@@ -1,4 +1,4 @@
 Guardian
 ========
 
-I am Guardian. Mostly of null values.
+Guardian. Mostly of null values.
