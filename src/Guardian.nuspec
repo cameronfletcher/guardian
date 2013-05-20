@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Guardian</id>
-    <version>0.1.0-beta06</version>
+    <version>0.1.0-beta07</version>
     <title>Guardian</title>
     <authors>Cameron Fletcher, Guardian contributors</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
