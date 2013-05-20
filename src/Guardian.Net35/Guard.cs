@@ -11,8 +11,9 @@ using System.Linq;
 using System.Reflection.Emit;
 
 // ReSharper disable CheckNamespace
-// ReSharper disable UnusedMember.Global
 // ReSharper disable PossibleNullReferenceException
+// ReSharper disable RedundantNameQualifier
+// ReSharper disable UnusedMember.Global
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
