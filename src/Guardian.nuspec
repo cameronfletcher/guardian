@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Guardian</id>
+    <version>0.1.0-beta05</version>
+    <title>Guardian</title>
+    <authors>Cameron Fletcher, Guardian contributors</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Guardian. Mostly of null values.</description>
+    <releaseNotes>TBD</releaseNotes>
+    <copyright>Copyright (c) Guardian contributors.</copyright>
+    <tags>guard clause null arguments guardian</tags>
+  </metadata>
+  <files>
+    <file src="Guardian.Net35/Guard.cs" target="content/net35" />
+    <file src="Guardian.Net40/Guard.cs" target="content/net40" />
+    <file src="Guardian.Net45/Guard.cs" target="content/net45" />
+  </files>
+</package>

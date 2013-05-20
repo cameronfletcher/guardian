@@ -1,0 +1,151 @@
+﻿// <copyright file="Guard.cs" company="Guardian contributors">
+//  Copyright (c) Guardian contributors. All rights reserved.
+// </copyright>
+// <summary>Guardian. Mostly of null values.</summary>
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Reflection.Emit;
+
+// ReSharper disable CheckNamespace
+// ReSharper UnusedMember.Global
+// ReSharper PossibleNullReferenceException
+
+/// <summary>
+/// The <see cref="Guard"/> clause.
+/// </summary>
+internal class Guard
+{
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private member.")]
+    private static readonly Guard Instance = new Guard();
+
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private member, also.")]
+    private static readonly Dictionary<Type, Func<string, string, ArgumentException>> ExceptionFactories =
+        new Dictionary<Type, Func<string, string, ArgumentException>>
+        {
+            { typeof(ArgumentException), (message, parameterName) => new ArgumentException(message, parameterName) },
+            { typeof(ArgumentNullException), (message, parameterName) => new ArgumentNullException(parameterName, message) },
+        };
+
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private constructor.")]
+    private Guard()
+    {
+    }
+
+    /// <summary>
+    /// Provides instance and extension methods for the <see cref="Guard"/> clause.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:PropertySummaryDocumentationMustMatchAccessors", Justification = "Not here.")]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    public static Guard Against
+    {
+        get { return Instance; }
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(Func<T> expression)
+        where T : class
+    {
+        if (expression == null || expression() == null)
+        {
+            throw GetException(expression);
+        }
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(Func<T?> expression)
+        where T : struct
+    {
+        if (expression == null || expression() == null)
+        {
+            throw GetException(expression);
+        }
+    }
+
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
+    private static Exception GetException<T>(Func<T> expression)
+    {
+        var parameterName = expression == null ? "expression" : Expression.GetParameterName(expression);
+        if (parameterName == null)
+        {
+#if GuardLoose
+            return new ArgumentException("Value cannot be null.\r\nCannot determine parameter name from the expression used in the Guard clause.");
+#else
+            return new NotSupportedException("The expression used in the Guard clause is not supported.");
+#endif
+        }
+
+        var exceptionType = parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
+        return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
+    }
+
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private class.")]
+    private static class Expression
+    {
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Inside private class.")]
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+        public static string GetParameterName<T>(Func<T> expression)
+        {
+            var il = expression.Method.GetMethodBody().GetILAsByteArray();
+
+            if (il[0] != (byte)OpCodes.Ldarg_0.Value || il[1] != (byte)OpCodes.Ldfld.Value)
+            {
+                return null;
+            }
+
+            var memberNames = new Stack<string>();
+
+            for (var @byte = 1; @byte < il.Length; @byte = @byte + 5)
+            {
+                if (il[@byte] == (byte)OpCodes.Stloc_0.Value || il[@byte] == (byte)OpCodes.Ret.Value)
+                {
+                    break;
+                }
+
+                if (il[@byte] == (byte)OpCodes.Ldfld.Value)
+                {
+                    var handle = BitConverter.ToInt32(il, @byte + 1);
+                    var member = expression.Target.GetType().Module.ResolveMember(handle);
+                    memberNames.Push(member.Name);
+                    continue;
+                }
+
+                if (il[@byte] == (byte)OpCodes.Callvirt.Value || il[@byte] == (byte)OpCodes.Call.Value)
+                {
+                    var handle = BitConverter.ToInt32(il, @byte + 1);
+                    var method = expression.Target.GetType().Module.ResolveMethod(handle);
+                    if (!method.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return null;
+                    }
+
+                    memberNames.Push(method.Name.Substring(4));
+                    continue;
+                }
+
+                return null; // unrecognised OpCode
+            }
+
+            return string.Join(".", memberNames.Reverse());
+        }
+    }
+}
