@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedParameter.Local
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
