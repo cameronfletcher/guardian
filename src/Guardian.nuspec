@@ -2,9 +2,11 @@
 <package>
   <metadata>
     <id>Guardian</id>
-    <version>0.1.0-beta07</version>
+    <version>0.2.0-beta01</version>
     <title>Guardian</title>
     <authors>Cameron Fletcher, Guardian contributors</authors>
+    <projectUrl>https://github.com/cameronfletcher/guardian</projectUrl>
+    <licenseUrl>https://github.com/cameronfletcher/guardian/blob/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian. Mostly of null values.</description>
     <releaseNotes>TBD</releaseNotes>
