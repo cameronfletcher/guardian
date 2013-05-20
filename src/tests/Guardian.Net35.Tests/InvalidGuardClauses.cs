@@ -194,7 +194,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => dictionary[2]));
 
             // assert
-#if DEBUG
+#if DEBUG && GUARD_STRICT
             exception.ShouldBeValid<NotSupportedException>();
 #else
             exception.Should().BeNull();
@@ -203,7 +203,7 @@ namespace Guardian.Tests
 
         private static void AssertValid(Exception exception)
         {
-#if DEBUG
+#if DEBUG && GUARD_STRICT
             exception.ShouldBeValid<NotSupportedException>();
 #else
             exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();

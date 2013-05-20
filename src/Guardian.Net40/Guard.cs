@@ -101,10 +101,12 @@ internal class Guard
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     private void Invalid<T>(Func<T> expression)
     {
+#if GUARD_STRICT
         if (expression != null && Expression.GetParameterName(expression) == null)
         {
             throw new NotSupportedException("The expression used in the Guard clause is not supported.");
         }
+#endif
     }
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private class.")]
