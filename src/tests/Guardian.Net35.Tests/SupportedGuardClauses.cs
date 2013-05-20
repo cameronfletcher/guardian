@@ -1,4 +1,8 @@
-﻿namespace Guardian.Tests
+﻿// <copyright file="SupportedGuardClauses.cs" company="Guardian contributors">
+//  Copyright (c) Guardian contributors. All rights reserved.
+// </copyright>
+
+namespace Guardian.Tests
 {
     using System;
     using Xunit;

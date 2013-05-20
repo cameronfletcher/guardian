@@ -1,4 +1,8 @@
-﻿namespace Guardian.Tests
+﻿// <copyright file="UnsupportedGuardClauses.cs" company="Guardian contributors">
+//  Copyright (c) Guardian contributors. All rights reserved.
+// </copyright>
+
+namespace Guardian.Tests
 {
     using System;
     using System.Collections.Generic;

@@ -1,7 +1,14 @@
-﻿namespace Guardian.Tests
+﻿// <copyright file="Thing.cs" company="Guardian contributors">
+//  Copyright (c) Guardian contributors. All rights reserved.
+// </copyright>
+
+namespace Guardian.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
+
     public class Thing
     {
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "To aid distinction.")]
         public int? field
         {
             get { return null; }
