@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;GUARD_STRICT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -48,11 +48,11 @@
     <Compile Include="..\..\Guardian.Net35\Guard.cs">
       <Link>Guard.cs</Link>
     </Compile>
-    <Compile Include="SupportedGuardClauses.cs" />
+    <Compile Include="ValidGuardClauses.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="ExtensionMethodTests.cs" />
     <Compile Include="Thing.cs" />
-    <Compile Include="UnsupportedGuardClauses.cs" />
+    <Compile Include="InvalidGuardClauses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

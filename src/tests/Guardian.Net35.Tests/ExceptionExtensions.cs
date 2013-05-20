@@ -36,9 +36,9 @@ namespace Guardian.Tests
             exception.Message.Should().StartWith(string.Concat(DefaultArgumentNullExceptionMessage, "\r\nParameter name: ", parameterName));
         }
 
-        public static void WithNoParameter(this ArgumentException exception)
+        public static void WithUnknownParameter(this ArgumentException exception)
         {
-            exception.ParamName.Should().BeNull();
+            exception.ParamName.Should().Be("[unknown]");
         }
     }
 }

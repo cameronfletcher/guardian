@@ -1,4 +1,4 @@
-﻿// <copyright file="SupportedGuardClauses.cs" company="Guardian contributors">
+﻿// <copyright file="ValidGuardClauses.cs" company="Guardian contributors">
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace Guardian.Tests
     using System;
     using Xunit;
 
-    public class SupportedGuardClauses
+    public class ValidGuardClauses
     {
         [Fact]
         public void NullExpression()

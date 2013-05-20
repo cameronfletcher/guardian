@@ -57,14 +57,14 @@
     <Compile Include="..\Guardian.Net35.Tests\ExtensionMethodTests.cs">
       <Link>ExtensionMethodTests.cs</Link>
     </Compile>
-    <Compile Include="..\Guardian.Net35.Tests\SupportedGuardClauses.cs">
-      <Link>SupportedGuardClauses.cs</Link>
+    <Compile Include="..\Guardian.Net35.Tests\InvalidGuardClauses.cs">
+      <Link>InvalidGuardClauses.cs</Link>
     </Compile>
     <Compile Include="..\Guardian.Net35.Tests\Thing.cs">
       <Link>Thing.cs</Link>
     </Compile>
-    <Compile Include="..\Guardian.Net35.Tests\UnsupportedGuardClauses.cs">
-      <Link>UnsupportedGuardClauses.cs</Link>
+    <Compile Include="..\Guardian.Net35.Tests\ValidGuardClauses.cs">
+      <Link>ValidGuardClauses.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

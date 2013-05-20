@@ -11,8 +11,8 @@ using System.Linq;
 using System.Reflection.Emit;
 
 // ReSharper disable CheckNamespace
-// ReSharper UnusedMember.Global
-// ReSharper PossibleNullReferenceException
+// ReSharper disable UnusedMember.Global
+// ReSharper disable PossibleNullReferenceException
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
@@ -56,6 +56,8 @@ internal class Guard
     public void Null<T>(Func<T> expression)
         where T : class
     {
+        Guard.Against.Invalid(expression);
+
         if (expression == null || expression() == null)
         {
             throw GetException(expression);
@@ -73,6 +75,8 @@ internal class Guard
     public void Null<T>(Func<T?> expression)
         where T : struct
     {
+        Guard.Against.Invalid(expression);
+
         if (expression == null || expression() == null)
         {
             throw GetException(expression);
@@ -84,18 +88,22 @@ internal class Guard
     [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
     private static Exception GetException<T>(Func<T> expression)
     {
-        var parameterName = expression == null ? "expression" : Expression.GetParameterName(expression);
-        if (parameterName == null)
-        {
-#if GuardLoose
-            return new ArgumentException("Value cannot be null.\r\nCannot determine parameter name from the expression used in the Guard clause.");
-#else
-            return new NotSupportedException("The expression used in the Guard clause is not supported.");
-#endif
-        }
-
+        var parameterName = expression == null ? "expression" : Expression.GetParameterName(expression) ?? "[unknown]";
         var exceptionType = parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
+
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
+    }
+
+    [Conditional("DEBUG")]
+    [DebuggerStepThrough]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    private void Invalid<T>(Func<T> expression)
+    {
+        if (expression != null && Expression.GetParameterName(expression) == null)
+        {
+            throw new NotSupportedException("The expression used in the Guard clause is not supported.");
+        }
     }
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private class.")]

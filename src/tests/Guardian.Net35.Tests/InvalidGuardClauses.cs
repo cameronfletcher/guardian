@@ -1,4 +1,4 @@
-﻿// <copyright file="UnsupportedGuardClauses.cs" company="Guardian contributors">
+﻿// <copyright file="InvalidGuardClauses.cs" company="Guardian contributors">
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 
@@ -7,9 +7,10 @@ namespace Guardian.Tests
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using FluentAssertions;
     using Xunit;
 
-    public class UnsupportedGuardClauses
+    public class InvalidGuardClauses
     {
         [Fact]
         public void DefaultExpression()
@@ -183,12 +184,29 @@ namespace Guardian.Tests
             AssertValid(exception);
         }
 
+        [Fact]
+        public void NonNullExpression()
+        {
+            // arrange
+            var dictionary = new Dictionary<int?, string> { { 2, string.Empty } };
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Null(() => dictionary[2]));
+
+            // assert
+#if DEBUG
+            exception.ShouldBeValid<NotSupportedException>();
+#else
+            exception.Should().BeNull();
+#endif
+        }
+
         private static void AssertValid(Exception exception)
         {
-#if GuardLoose
-            exception.ShouldBeValid<ArgumentException>();
-#else
+#if DEBUG
             exception.ShouldBeValid<NotSupportedException>();
+#else
+            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
 #endif
         }
     }
