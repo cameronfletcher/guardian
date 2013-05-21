@@ -90,7 +90,7 @@ internal class Guard
     [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
     private static Exception GetException<T>(Func<T> expression)
     {
-        var parameterName = expression == null ? "expression" : Expression.Parse(expression) ?? "[unknown]";
+        var parameterName = expression == null ? "expression" : Expression.Parse(expression) ?? Expression.Unknown;
         var exceptionType = parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
@@ -110,10 +110,22 @@ internal class Guard
 #endif
     }
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private class.")]
+    /// <summary>
+    /// Provides expression helper methods for the <see cref="Guard"/> clause.
+    /// </summary>
     public static class Expression
     {
-        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Inside private class.")]
+        /// <summary>
+        /// Represents the unknown expression.
+        /// </summary>
+        public const string Unknown = "[unknown]";
+
+        /// <summary>
+        /// Converts the specified expression to its string representation.
+        /// </summary>
+        /// <typeparam name="T">The expression type.</typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <returns>The string representation of the specified expression.</returns>
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
         public static string Parse<T>(Func<T> expression)
         {

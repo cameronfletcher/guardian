@@ -59,7 +59,7 @@ namespace Guardian.Tests
 
         public static void WithUnknownParameter(this ArgumentException exception)
         {
-            exception.ParamName.Should().Be("[unknown]");
+            exception.ParamName.Should().Be(Guard.Expression.Unknown);
         }
     }
 }

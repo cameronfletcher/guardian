@@ -82,7 +82,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Empty(() => thing.ThingArray[1].ThingArray));
 
             // assert
-            exception.ShouldBeStrictNull(); ;
+            exception.ShouldBeStrictNull();
         }
     }
 }
