@@ -96,18 +96,16 @@ internal class Guard
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
     }
 
-    [Conditional("DEBUG")]
+    [Conditional("GUARD_STRICT")]
     [DebuggerStepThrough]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     private void Invalid<T>(Func<T> expression)
     {
-#if GUARD_STRICT
         if (expression != null && Expression.Parse(expression) == null)
         {
             throw new NotSupportedException("The expression used in the Guard clause is not supported.");
         }
-#endif
     }
 
     /// <summary>

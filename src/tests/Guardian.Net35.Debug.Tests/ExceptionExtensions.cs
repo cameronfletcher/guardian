@@ -36,7 +36,7 @@ namespace Guardian.Tests
 
         public static void ShouldBeStrictArgumentNullException(this Exception exception)
         {
-#if DEBUG && GUARD_STRICT
+#if GUARD_STRICT
             exception.ShouldBeValid<NotSupportedException>();
 #else
             exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
@@ -45,7 +45,7 @@ namespace Guardian.Tests
 
         public static void ShouldBeStrictNull(this Exception exception)
         {
-#if DEBUG && GUARD_STRICT
+#if GUARD_STRICT
             exception.ShouldBeValid<NotSupportedException>();
 #else
             exception.Should().BeNull();
