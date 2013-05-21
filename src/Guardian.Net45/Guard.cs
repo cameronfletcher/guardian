@@ -93,7 +93,7 @@ internal class Guard
     [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
     private static Exception GetException<T>(Func<T> expression)
     {
-        var parameterName = expression == null ? "expression" : Expression.GetParameterName(expression) ?? "[unknown]";
+        var parameterName = expression == null ? "expression" : Expression.Parse(expression) ?? "[unknown]";
         var exceptionType = parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
@@ -106,7 +106,7 @@ internal class Guard
     private void Invalid<T>(Func<T> expression)
     {
 #if GUARD_STRICT
-        if (expression != null && Expression.GetParameterName(expression) == null)
+        if (expression != null && Expression.Parse(expression) == null)
         {
             throw new NotSupportedException("The expression used in the Guard clause is not supported.");
         }
@@ -114,11 +114,11 @@ internal class Guard
     }
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private class.")]
-    private static class Expression
+    public static class Expression
     {
         [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Inside private class.")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
-        public static string GetParameterName<T>(Func<T> expression)
+        public static string Parse<T>(Func<T> expression)
         {
             var il = expression.Method.GetMethodBody().GetILAsByteArray();
 

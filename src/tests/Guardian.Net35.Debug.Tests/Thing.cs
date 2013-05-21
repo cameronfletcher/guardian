@@ -19,6 +19,16 @@ namespace Guardian.Tests
             get { return null; }
         }
 
+        public Thing[] ThingArray
+        {
+            get { return new[] { new Thing(), new Thing() }; }
+        }
+
+        public string[] EmptyArray
+        {
+            get { return new string[0]; }
+        }
+
         public Thing NestedThing
         {
             get { return new Thing(); }

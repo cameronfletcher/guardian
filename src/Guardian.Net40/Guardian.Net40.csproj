@@ -34,6 +34,7 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Guard.cs" />
+    <Compile Include="GuardExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

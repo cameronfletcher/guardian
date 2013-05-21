@@ -40,11 +40,13 @@
     <Compile Include="..\..\Guardian.Net35\Guard.cs">
       <Link>Guard.cs</Link>
     </Compile>
-    <Compile Include="ValidGuardTests.cs" />
+    <Compile Include="..\..\Guardian.Net35\GuardExtensions.cs">
+      <Link>GuardExtensions.cs</Link>
+    </Compile>
     <Compile Include="ExceptionExtensions.cs" />
-    <Compile Include="ExtensionMethodTests.cs" />
+    <Compile Include="GuardExtensionsTests.cs" />
     <Compile Include="Thing.cs" />
-    <Compile Include="InvalidGuardTests.cs" />
+    <Compile Include="GuardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

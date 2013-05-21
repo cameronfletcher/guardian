@@ -6,20 +6,24 @@ namespace Guardian.Tests
 {
     using System;
     using FluentAssertions;
-    
+
+    internal enum ExceptionType
+    {
+        Null = 0,
+        Empty = 1
+    }
+
     internal static class ExceptionExtensions
     {
-        private static readonly string DefaultArgumentNullExceptionMessage = new ArgumentNullException().Message;
-
         // TODO (Cameron): Add reasons to assertions.
-        public static T ShouldBeValid<T>(this Exception exception) where T : Exception
+        public static T ShouldBeValid<T>(this Exception exception, ExceptionType type = ExceptionType.Null) where T : Exception
         {
             exception.Should().NotBeNull("because a null exception is invalid");
             exception.Should().BeOfType<T>();
 
             if (typeof(ArgumentException).IsAssignableFrom(typeof(T)))
             {
-                exception.Message.Should().StartWith(DefaultArgumentNullExceptionMessage);
+                exception.Message.Should().StartWith(type == ExceptionType.Null ? "Value cannot be null." : "Value cannot be empty.");
             }
 
             if (typeof(NotSupportedException).IsAssignableFrom(typeof(T)))
@@ -51,7 +55,6 @@ namespace Guardian.Tests
         public static void WithParameter(this ArgumentException exception, string parameterName)
         {
             exception.ParamName.Should().Be(parameterName);
-            exception.Message.Should().StartWith(string.Concat(DefaultArgumentNullExceptionMessage, "\r\nParameter name: ", parameterName));
         }
 
         public static void WithUnknownParameter(this ArgumentException exception)
