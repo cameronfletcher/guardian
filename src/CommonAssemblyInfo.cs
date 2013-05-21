@@ -15,6 +15,6 @@ using System.Reflection;
 
 [assembly: AssemblyVersion("0.2.0.0")]
 [assembly: AssemblyFileVersion("0.2.0.0")]
-[assembly: AssemblyInformationalVersion("0.2.0-beta01")]
+[assembly: AssemblyInformationalVersion("0.2.0-beta02")]
 
 [assembly: SuppressMessage("Microsoft.Usage", "CA2243:AttributeStringLiteralsShouldParseCorrectly", Justification = "Using SemVer.")]
