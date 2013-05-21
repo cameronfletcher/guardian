@@ -35,6 +35,5 @@ NOTE: There is a known issue with NuGet Package Manager versions 1.8 to 2.0. See
 NOTE: If your solution is currently using StyleCop.MSBuild.4.7.17.0 or earlier, updating to a later version will NOT work. Instead of updating, uninstall your current version and then install a later version. See http://adamralph.com/2012/04/17/introducing-stylecop-msbuild/ for an explanation.</releaseNotes>
     <copyright>Copyright (c) Adam Ralph (adam@adamralph.com)</copyright>
     <language>en-US</language>
-    <references />
   </metadata>
 </package>

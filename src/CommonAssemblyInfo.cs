@@ -1,7 +1,7 @@
 ﻿// <copyright file="CommonAssemblyInfo.cs" company="Guardian contributors">
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
-// <summary>I am Guardian. Mostly of null values.</summary>
+// <summary>Guardian. Mostly of null values.</summary>
 
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
