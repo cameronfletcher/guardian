@@ -13,11 +13,11 @@ using System.Linq;
 internal static class GuardExtensions
 {
     /// <summary>
-    /// Guard against empty enumerations.
+    /// Guard against empty argument values.
     /// </summary>
-    /// <typeparam name="T">The type of enumeration to guard against.</typeparam>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
     /// <param name="guard">The Guard class.</param>
-    /// <param name="expression">An expression returning the enumeration to guard against.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
