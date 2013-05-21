@@ -27,7 +27,7 @@ internal static class GuardExtensions
 
         if (!expression().Any())
         {
-            throw new ArgumentException("Value cannot be empty.", Guard.Expression.Parse(expression));
+            throw new ArgumentException("Value cannot be empty.", Guard.Expression.Parse(expression) ?? Guard.Expression.Unknown);
         }
     }
 }

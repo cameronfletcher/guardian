@@ -73,6 +73,19 @@ namespace Guardian.Tests
         }
 
         [Fact]
+        public void BlockExpressionEnumeration()
+        {
+            // arrange
+            var thing = new Thing();
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Empty(() => { return "hello"; }));
+
+            // assert
+            exception.ShouldBeStrictNull();
+        }
+
+        [Fact]
         public void NonNullEnumeration()
         {
             // arrange
