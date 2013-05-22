@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
+
+  <UsingTask AssemblyFile="..\packages\xunit.runners.1.9.1\tools\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
+
+  <PropertyGroup>
+    <Solution>Guardian.sln</Solution>
+    <BuildDir>..\build</BuildDir>
+  </PropertyGroup>
+  
+  <Target Name="CreateBuildDir">
+    <RemoveDir Directories="$(BuildDir)" />
+    <MakeDir Directories="$(BuildDir)" />
+  </Target>
+  
+  <!-- TODO: increment assembly version -->
+  
+  <Target Name="Build">
+    <MSBuild Projects="$(Solution)" Properties="Configuration=Fixed" />
+  </Target>
+
+  <Target Name="Test" DependsOnTargets="Build;CreateBuildDir">
+    <ItemGroup>
+      <TestAssemblies Include="**/bin/**/*.Tests*.dll" />
+    </ItemGroup>
+    <Message Text="TestAssemblies: @(TestAssemblies)" />
+    <xunit Assemblies="@(TestAssemblies)" Html="$(BuildDir)\TestResults.html" />
+  </Target>
+
+  <Target Name="Package" DependsOnTargets="CreateBuildDir">
+    <Exec Command="..\packages\NuGet.CommandLine.2.5.0\tools\NuGet.exe pack Guardian.nuspec -OutputDir &quot;$(BuildDir)&quot;" /><!-- -Version 0.2.0-beta03" /-->
+  </Target>
+  
+  <!-- TODO: publish package -->
+  
+</Project>

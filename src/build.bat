@@ -1,0 +1,1 @@
+msbuild Guardian.msbuild /t:Build;Test;Package
