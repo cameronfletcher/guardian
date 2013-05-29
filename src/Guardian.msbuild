@@ -43,7 +43,7 @@
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package">
-    <Exec Command="..\packages\NuGet.CommandLine.2.5.0\tools\NuGet.exe push &quot;$(BuildDir)\Guardian.$(SemanticVersion).nupkg&quot; $(ApiKey) -Source https://nuget.org/api/v2/" />
+    <Exec Command="..\packages\NuGet.CommandLine.2.5.0\tools\NuGet.exe push &quot;$(BuildDir)\Guardian.$(SemanticVersion).nupkg&quot; $(ApiKey) -Source https://nuget.org" />
   </Target>
 
 </Project>
