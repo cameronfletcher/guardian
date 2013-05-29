@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>AssemblyVersion.MSBuild</id>
+    <version>0.0.1-alpha</version>
+    <title>AssemblyVersion.MSBuild</title>
+    <authors>Cameron Fletcher</authors>
+    <owners>Cameron Fletcher</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An assembly versioning task for MSBuild.</description>
+    <releaseNotes>TBD</releaseNotes>
+    <copyright>Copyright (c) Cameron Fletcher.</copyright>
+    <tags>assembly version msbuild</tags>
+  </metadata>
+</package>
