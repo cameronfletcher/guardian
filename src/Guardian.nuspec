@@ -2,14 +2,15 @@
 <package>
   <metadata>
     <id>Guardian</id>
-    <title>Guardian</title>
+    <title>Guardian (source code package)</title>
     <version>0.0.1</version>
     <authors>Cameron Fletcher, Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian</projectUrl>
     <iconUrl>https://raw.github.com/cameronfletcher/guardian/master/assets/guardian_small.png</iconUrl>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Guardian. Mostly of null values.</description>
+    <description>Guardian. Mostly of null values.
+A very unobtrusive, lightweight source code package: a single class less than 200 lines of code.</description>
     <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
