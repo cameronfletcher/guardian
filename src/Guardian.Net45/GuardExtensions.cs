@@ -13,8 +13,10 @@ using System.Linq;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 
+/// <summary>
+/// Provides extension methods for the <see cref="Guard"/> clause.
+/// </summary>
 [ExcludeFromCodeCoverage]
-[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Extension method class.")]
 internal static class GuardExtensions
 {
     /// <summary>
