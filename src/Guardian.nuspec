@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Guardian</id>
-    <title>Guardian (source code package)</title>
+    <title>Guardian</title>
     <version>0.0.1</version>
     <authors>Cameron Fletcher, Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian</projectUrl>
@@ -13,8 +13,13 @@
 A very unobtrusive, lightweight source code package: less than 200 lines of code.
       
       Use like this:
-      Guard.Against.Null(() =&gt; argument);    
-</description>
+      Guard.Against.Null(() =&gt; parameter);
+
+      Can be extended like this:
+      Guard.Against.Empty(() =&gt; collection);
+      
+Possibly the best tool for the job. Providing the job is simple.
+    </description>
     <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
