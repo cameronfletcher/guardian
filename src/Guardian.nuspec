@@ -3,6 +3,7 @@
   <metadata>
     <id>Guardian</id>
     <title>Guardian</title>
+    <version>0.0.1</version>
     <authors>Cameron Fletcher, Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian</projectUrl>
     <iconUrl>https://raw.github.com/cameronfletcher/guardian/master/assets/guardian_small.png</iconUrl>
