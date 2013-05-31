@@ -10,7 +10,11 @@
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian. Mostly of null values.
-A very unobtrusive, lightweight source code package: a single class less than 200 lines of code.</description>
+A very unobtrusive, lightweight source code package: less than 200 lines of code.
+      
+      Use like this:
+      Guard.Against.Null(() =&gt; argument);    
+</description>
     <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
