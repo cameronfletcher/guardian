@@ -116,7 +116,8 @@ internal class Guard
         /// <summary>
         /// Represents the unknown expression.
         /// </summary>
-        public const string Unknown = "[unknown]";
+        [SuppressMessage("Microsoft.Performance", "CA1802:UseLiteralsWhereAppropriate", Justification = "Inappropriate.")]
+        public static readonly string Unknown = "[unknown]";
 
         /// <summary>
         /// Converts the specified expression to its string representation.
