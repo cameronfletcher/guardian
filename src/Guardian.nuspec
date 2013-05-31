@@ -2,12 +2,11 @@
 <package>
   <metadata>
     <id>Guardian</id>
-    <version>0.2.0-beta02</version>
     <title>Guardian</title>
     <authors>Cameron Fletcher, Guardian contributors</authors>
-    <iconUrl>https://raw.github.com/cameronfletcher/guardian/master/assets/guardian_small.png</iconUrl>
     <projectUrl>https://github.com/cameronfletcher/guardian</projectUrl>
-    <licenseUrl>https://github.com/cameronfletcher/guardian/blob/master/LICENSE.mit.txt</licenseUrl>
+    <iconUrl>https://raw.github.com/cameronfletcher/guardian/master/assets/guardian_small.png</iconUrl>
+    <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian. Mostly of null values.</description>
     <releaseNotes>TBD</releaseNotes>
