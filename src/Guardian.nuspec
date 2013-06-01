@@ -7,18 +7,18 @@
     <authors>Cameron Fletcher
 Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian/wiki</projectUrl>
-    <iconUrl>http://nuget-cameronfletcher.azurewebsites.net/icons/guardian_small.png</iconUrl>
+    <iconUrl>http://nuget-cameronfletcher.azurewebsites.net/icons/guardian.png</iconUrl>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian. Mostly of null values.
 An unobtrusive, lightweight, guard clause source code package: less than 200 lines of code.
-      
+
       Should be used like this:
       Guard.Against.Null(() =&gt; parameter);
 
       May be extended like this:
       Guard.Against.Empty(() =&gt; collection);
-      
+
 Possibly the best tool for the job. Providing the job is simple.
     </description>
     <releaseNotes>Initial release.</releaseNotes>
