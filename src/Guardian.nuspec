@@ -7,7 +7,7 @@
     <authors>Cameron Fletcher
 Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian/wiki</projectUrl>
-    <iconUrl>http://nuget-cameronfletcher.azurewebsites.net/icons/guardian.png</iconUrl>
+    <iconUrl>http://nuget.cameronfletcher.com/icons/guardian.png</iconUrl>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian. Mostly of null values.
