@@ -28,7 +28,6 @@ Possibly the best tool for the job. Providing the job is simple.
   <files>
     <file src="Guardian.Net35/Guard.cs" target="content/net35" />
     <file src="Guardian.Net40/Guard.cs" target="content/net40" />
-    <file src="Guardian.Net40/Guard.cs" target="content/portable-net40+sl4+win8+wp7" />
     <file src="Guardian.Net45/Guard.cs" target="content/net45" />
   </files>
 </package>
