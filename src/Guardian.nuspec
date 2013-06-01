@@ -11,7 +11,7 @@ Guardian contributors</authors>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian. Mostly of null values.
-A very unobtrusive, lightweight source code package: less than 200 lines of code.
+An unobtrusive, lightweight, guard clause source code package: less than 200 lines of code.
       
       Should be used like this:
       Guard.Against.Null(() =&gt; parameter);
@@ -21,7 +21,7 @@ A very unobtrusive, lightweight source code package: less than 200 lines of code
       
 Possibly the best tool for the job. Providing the job is simple.
     </description>
-    <releaseNotes>TBD</releaseNotes>
+    <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
   </metadata>

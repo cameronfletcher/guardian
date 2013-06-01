@@ -13,8 +13,8 @@ using System.Reflection;
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyProduct("Guardian")]
 
-[assembly: AssemblyVersion("0.3.2.0")]
-[assembly: AssemblyFileVersion("0.3.2.0")]
-[assembly: AssemblyInformationalVersion("0.3.2-alpha")]
+[assembly: AssemblyVersion("0.3.3.0")]
+[assembly: AssemblyFileVersion("0.3.3.0")]
+[assembly: AssemblyInformationalVersion("0.3.3-alpha")]
 
 [assembly: SuppressMessage("Microsoft.Usage", "CA2243:AttributeStringLiteralsShouldParseCorrectly", Justification = "Using SemVer.")]
