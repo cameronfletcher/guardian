@@ -48,7 +48,10 @@
           </RuleSettings>
         </Rule>
       </Rules>
-      <AnalyzerSettings />
+      <AnalyzerSettings>
+        <StringProperty Name="CompanyName">Guardian contributors</StringProperty>
+        <StringProperty Name="Copyright">Copyright (c) Guardian contributors. All rights reserved.</StringProperty>
+      </AnalyzerSettings>
     </Analyzer>
     <Analyzer AnalyzerId="StyleCop.CSharp.ReadabilityRules">
       <Rules>
