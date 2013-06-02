@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>AssemblyVersion.MSBuild</id>
-    <version>0.0.1-alpha</version>
+    <version>0.0.2-alpha</version>
     <title>AssemblyVersion.MSBuild</title>
     <authors>Cameron Fletcher</authors>
     <owners>Cameron Fletcher</owners>

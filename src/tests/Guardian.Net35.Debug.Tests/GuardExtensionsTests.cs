@@ -14,7 +14,7 @@ namespace Guardian.Tests
         public void NullEnumeration()
         {
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty((Func<IEnumerable<object>>)null));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty((Func<IEnumerable<object>>)null));
 
             // assert
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
@@ -27,7 +27,7 @@ namespace Guardian.Tests
             var enumeration = (object[])null;
 
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty(() => enumeration));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty(() => enumeration));
 
             // assert
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("enumeration");
@@ -40,7 +40,7 @@ namespace Guardian.Tests
             var enumeration = string.Empty; // IEnumerable<char>
 
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty(() => enumeration));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty(() => enumeration));
 
             // assert
             exception.ShouldBeValid<ArgumentException>(ExceptionType.Empty).WithParameter("enumeration");
@@ -53,7 +53,7 @@ namespace Guardian.Tests
             var enumeration = new object[0];
 
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty(() => enumeration));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty(() => enumeration));
 
             // assert
             exception.ShouldBeValid<ArgumentException>(ExceptionType.Empty).WithParameter("enumeration");
@@ -66,7 +66,7 @@ namespace Guardian.Tests
             var thing = new Thing();
 
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty(() => thing.EmptyArray));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty(() => thing.EmptyArray));
 
             // assert
             exception.ShouldBeValid<ArgumentException>(ExceptionType.Empty).WithParameter("thing.EmptyArray");
@@ -79,7 +79,7 @@ namespace Guardian.Tests
             var thing = new Thing();
 
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty(() => { return "hello"; }));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty(() => { return "hello"; }));
 
             // assert
             exception.ShouldBeStrictNull();
@@ -92,7 +92,7 @@ namespace Guardian.Tests
             var thing = new Thing();
 
             // act
-            var exception = Record.Exception(() => Guard.Against.Empty(() => thing.ThingArray[1].ThingArray));
+            var exception = Record.Exception(() => Guard.Against.NullOrEmpty(() => thing.ThingArray[1].ThingArray));
 
             // assert
             exception.ShouldBeStrictNull();
