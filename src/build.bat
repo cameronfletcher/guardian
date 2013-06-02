@@ -1,1 +1,1 @@
-msbuild Guardian.msbuild /t:Build;Test;Package
+@msbuild Guardian.msbuild /t:Build;Test;Package

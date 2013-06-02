@@ -10,15 +10,20 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection.Emit;
 
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1636:FileHeaderCopyrightTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
+
 // ReSharper disable CheckNamespace
+// ReSharper disable ConvertToConstant.Global
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedParameter.Local
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
 /// </summary>
+[ExcludeFromCodeCoverage]
 internal class Guard
 {
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private member.")]
