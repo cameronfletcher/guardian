@@ -99,7 +99,6 @@ internal class Guard
             : typeof(ArgumentException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
-
     }
 
     [Conditional("GUARD_STRICT")]
