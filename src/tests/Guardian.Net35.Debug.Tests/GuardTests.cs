@@ -18,7 +18,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null((Func<object>)null));
 
             // assert
+#if PCL
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
+#else
+            exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
+#endif
         }
 
         [Fact]
@@ -31,7 +35,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("thing");
+#endif
         }
 
         [Fact]
@@ -44,7 +52,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.field));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.field");
+#endif
         }
 
         [Fact]
@@ -57,7 +69,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.Property));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.Property");
+#endif
         }
 
         [Fact]
@@ -70,7 +86,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.NestedThing.field));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.NestedThing.field");
+#endif
         }
 
         [Fact]
@@ -83,7 +103,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.NestedThing.Property));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.NestedThing.Property");
+#endif
         }
 
         [Fact]

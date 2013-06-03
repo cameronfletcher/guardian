@@ -14,11 +14,9 @@ using System.Reflection.Emit;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 
 // ReSharper disable CheckNamespace
-// ReSharper disable ConvertToConstant.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable RedundantNameQualifier
-// ReSharper disable UnusedMember.Global
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
@@ -94,8 +92,10 @@ internal class Guard
     [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
     private static Exception GetException<T>(Func<T> expression)
     {
-        var parameterName = expression == null ? "expression" : Expression.Parse(expression) ?? Expression.Unknown;
-        var exceptionType = parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
+        var parameterName = expression == null ? "expression" : Expression.Parse(expression);
+        var exceptionType = parameterName == null || !parameterName.Contains(".")
+            ? typeof(ArgumentNullException)
+            : typeof(ArgumentException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
     }
@@ -117,12 +117,6 @@ internal class Guard
     /// </summary>
     public static class Expression
     {
-        /// <summary>
-        /// Represents the unknown expression.
-        /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1802:UseLiteralsWhereAppropriate", Justification = "Inappropriate.")]
-        public static readonly string Unknown = "[unknown]";
-
         /// <summary>
         /// Converts the specified expression to its string representation.
         /// </summary>
