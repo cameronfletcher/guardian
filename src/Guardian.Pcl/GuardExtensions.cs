@@ -29,11 +29,11 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrEmpty<T>(this Guard guard, Func<IEnumerable<T>> expression)
     {
-        Guard.Against.Null(expression);
+        Guard.Against.Null(expression, "expression");
 
         if (!expression().Any())
         {
-            throw new ArgumentException("Value cannot be empty.", Guard.Expression.Parse(expression));
+            throw new ArgumentException("Value cannot be empty.");
         }
     }
 }

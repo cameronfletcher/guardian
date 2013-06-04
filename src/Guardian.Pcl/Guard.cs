@@ -53,15 +53,14 @@ internal class Guard
     /// <typeparam name="T">The type of value to guard against.</typeparam>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+    [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.Null(value, parameterName) instead.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(Func<T> expression)
         where T : class
     {
-        if (expression == null || expression() == null)
-        {
-            throw GetException(expression);
-        }
+        Guard.Against.NullUsing<ArgumentNullException>(expression, "expression");
+        Guard.Against.NullUsing<ArgumentNullException>(expression(), null);
     }
 
     /// <summary>
@@ -70,33 +69,96 @@ internal class Guard
     /// <typeparam name="T">The type of value to guard against.</typeparam>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+    [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.Null(value, parameterName) instead.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(Func<T?> expression)
         where T : struct
     {
-        if (expression == null || expression() == null)
-        {
-            throw GetException(expression);
-        }
+        Guard.Against.NullUsing<ArgumentNullException>(expression, "expression");
+        Guard.Against.NullUsing<ArgumentNullException>(expression(), null);
     }
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
-    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
-    [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
-    private static Exception GetException<T>(Func<T> expression)
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="value">The value.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(T value, string parameterName)
+        where T : class
     {
-        var parameterName = expression == null ? "expression" : Expression.Parse(expression);
-        var exceptionType = parameterName == null || !parameterName.Contains(".")
-            ? typeof(ArgumentNullException)
-            : typeof(ArgumentException);
+        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
+        Guard.Against.NullUsing<ArgumentNullException>(value, parameterName);
+    }
 
-        return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="value">The value.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    /// <param name="propertyName">Name of the property.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(T value, string parameterName, string propertyName)
+        where T : class
+    {
+        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
+        Guard.Against.NullUsing<ArgumentNullException>(propertyName, "propertyName");
+        Guard.Against.NullUsing<ArgumentException>(value, string.Concat(parameterName, ".", propertyName));
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="value">The value.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(T? value, string parameterName)
+        where T : struct
+    {
+        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
+        Guard.Against.NullUsing<ArgumentNullException>(value, parameterName);
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="value">The value.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    /// <param name="propertyName">Name of the property.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(T? value, string parameterName, string propertyName)
+        where T : struct
+    {
+        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
+        Guard.Against.NullUsing<ArgumentNullException>(propertyName, "propertyName");
+        Guard.Against.NullUsing<ArgumentException>(value, string.Concat(parameterName, ".", propertyName));
+    }
+
+    [DebuggerStepThrough]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    private void NullUsing<T>(object value, string parameterName)
+        where T : Exception
+    {
+        if (value == null)
+        {
+            throw ExceptionFactories[typeof(T)].Invoke("Value cannot be null.", parameterName);
+        }
     }
 
     /// <summary>
     /// Provides expression helper methods for the <see cref="Guard"/> clause.
     /// </summary>
+    [Obsolete("This is not supported in portable class libraries.")]
     public static class Expression
     {
         /// <summary>
