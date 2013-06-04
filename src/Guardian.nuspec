@@ -29,6 +29,6 @@ Possibly the best tool for the job. Providing the job is simple.
     <file src="Guardian.Net35/Guard.cs" target="content/net35" />
     <file src="Guardian.Net40/Guard.cs" target="content/net40" />
     <file src="Guardian.Net45/Guard.cs" target="content/net45" />
-    <file src="Guardian.Pcl/Guard.cs" target="content/portable-sl4+wp71+windows8" />
+    <file src="Guardian.Pcl/Guard.cs" target="content/portable-win+net40+sl40+wp71" />
   </files>
 </package>
