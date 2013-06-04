@@ -17,6 +17,7 @@ using System.Reflection.Emit;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable RedundantNameQualifier
+// ReSharper disable UnusedMember.Global
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
