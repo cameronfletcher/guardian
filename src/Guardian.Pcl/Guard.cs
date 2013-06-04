@@ -13,8 +13,10 @@ using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable CheckNamespace
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable RedundantNameQualifier
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedParameter.Local
 
 /// <summary>
 /// The <see cref="Guard"/> clause.
