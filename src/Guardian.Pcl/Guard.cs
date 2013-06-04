@@ -61,24 +61,8 @@ internal class Guard
     public void Null<T>(Func<T> expression)
         where T : class
     {
-        Guard.Against.NullUsing<ArgumentNullException>(expression, "expression");
-        Guard.Against.NullUsing<ArgumentNullException>(expression(), null);
-    }
-
-    /// <summary>
-    /// Guard against null argument values.
-    /// </summary>
-    /// <typeparam name="T">The type of value to guard against.</typeparam>
-    /// <param name="expression">An expression returning the value to guard against.</param>
-    [DebuggerStepThrough]
-    [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.Null(value, parameterName) instead.")]
-    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
-    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
-    public void Null<T>(Func<T?> expression)
-        where T : struct
-    {
-        Guard.Against.NullUsing<ArgumentNullException>(expression, "expression");
-        Guard.Against.NullUsing<ArgumentNullException>(expression(), null);
+        Guard.Against.Null(expression, "expression", typeof(ArgumentNullException));
+        Guard.Against.Null(expression(), null, typeof(ArgumentNullException));
     }
 
     /// <summary>
@@ -93,8 +77,8 @@ internal class Guard
     public void Null<T>(T value, string parameterName)
         where T : class
     {
-        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
-        Guard.Against.NullUsing<ArgumentNullException>(value, parameterName);
+        Guard.Against.Null(parameterName, "parameterName", typeof(ArgumentNullException));
+        Guard.Against.Null(value, parameterName, typeof(ArgumentNullException));
     }
 
     /// <summary>
@@ -110,9 +94,25 @@ internal class Guard
     public void Null<T>(T value, string parameterName, string propertyName)
         where T : class
     {
-        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
-        Guard.Against.NullUsing<ArgumentNullException>(propertyName, "propertyName");
-        Guard.Against.NullUsing<ArgumentException>(value, string.Concat(parameterName, ".", propertyName));
+        Guard.Against.Null(parameterName, "parameterName", typeof(ArgumentNullException));
+        Guard.Against.Null(propertyName, "propertyName", typeof(ArgumentNullException));
+        Guard.Against.Null(value, string.Concat(parameterName, ".", propertyName), typeof(ArgumentException));
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.Null(value, parameterName) instead.")]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Null<T>(Func<T?> expression)
+        where T : struct
+    {
+        Guard.Against.Null(expression, "expression", typeof(ArgumentNullException));
+        Guard.Against.Null(expression(), null, typeof(ArgumentNullException));
     }
 
     /// <summary>
@@ -127,8 +127,8 @@ internal class Guard
     public void Null<T>(T? value, string parameterName)
         where T : struct
     {
-        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
-        Guard.Against.NullUsing<ArgumentNullException>(value, parameterName);
+        Guard.Against.Null(parameterName, "parameterName", typeof(ArgumentNullException));
+        Guard.Against.Null(value, parameterName, typeof(ArgumentNullException));
     }
 
     /// <summary>
@@ -144,21 +144,34 @@ internal class Guard
     public void Null<T>(T? value, string parameterName, string propertyName)
         where T : struct
     {
-        Guard.Against.NullUsing<ArgumentNullException>(parameterName, "parameterName");
-        Guard.Against.NullUsing<ArgumentNullException>(propertyName, "propertyName");
-        Guard.Against.NullUsing<ArgumentException>(value, string.Concat(parameterName, ".", propertyName));
+        Guard.Against.Null(parameterName, "parameterName", typeof(ArgumentNullException));
+        Guard.Against.Null(propertyName, "propertyName", typeof(ArgumentNullException));
+        Guard.Against.Null(value, string.Concat(parameterName, ".", propertyName), typeof(ArgumentException));
     }
 
     [DebuggerStepThrough]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
-    private void NullUsing<T>(object value, string parameterName)
-        where T : Exception
+    private void Null<T>(T value, string parameterName, Type exceptionType)
+        where T : class
     {
         if (value == null)
         {
-            throw ExceptionFactories[typeof(T)].Invoke("Value cannot be null.", parameterName);
+            throw ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
+        }
+    }
+
+    [DebuggerStepThrough]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    private void Null<T>(T? value, string parameterName, Type exceptionType)
+        where T : struct
+    {
+        if (!value.HasValue)
+        {
+            throw ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
         }
     }
 
