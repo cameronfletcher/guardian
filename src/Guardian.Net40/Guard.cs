@@ -83,7 +83,7 @@ internal class Guard
     {
         Guard.Against.Invalid(expression);
 
-        if (expression == null || expression() == null)
+        if (expression == null || !expression().HasValue)
         {
             throw GetException(expression);
         }
