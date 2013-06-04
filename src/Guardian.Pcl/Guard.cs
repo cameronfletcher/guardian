@@ -88,6 +88,7 @@ internal class Guard
     /// <param name="value">The value.</param>
     /// <param name="parameterName">Name of the parameter.</param>
     [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(T value, string parameterName)
         where T : class
@@ -104,6 +105,7 @@ internal class Guard
     /// <param name="parameterName">Name of the parameter.</param>
     /// <param name="propertyName">Name of the property.</param>
     [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(T value, string parameterName, string propertyName)
         where T : class
@@ -120,6 +122,7 @@ internal class Guard
     /// <param name="value">The value.</param>
     /// <param name="parameterName">Name of the parameter.</param>
     [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(T? value, string parameterName)
         where T : struct
@@ -136,6 +139,7 @@ internal class Guard
     /// <param name="parameterName">Name of the parameter.</param>
     /// <param name="propertyName">Name of the property.</param>
     [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(T? value, string parameterName, string propertyName)
         where T : struct
@@ -147,6 +151,7 @@ internal class Guard
 
     [DebuggerStepThrough]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     private void NullUsing<T>(object value, string parameterName)
         where T : Exception
