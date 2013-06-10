@@ -12,22 +12,14 @@ Guardian contributors</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guardian extension methods. Mostly for empty values.
 An unobtrusive, lightweight, guard clause source code package: less than 200 lines of code.
-
-      Should be used like this:
-      Guard.Against.Null(() =&gt; parameter);
-
-      May be extended like this:
-      Guard.Against.Empty(() =&gt; collection);
-
-Possibly the best tool for the job. Providing the job is simple.
     </description>
     <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian extensions</tags>
+    <dependencies>
+      <dependency id="Guardian" version="[0.0.1,2)" />
+    </dependencies>
   </metadata>
-  <dependencies>
-    <dependency id="Guardian" version="[0.0.1,2)" />
-  </dependencies>
   <files>
     <file src="Guardian.Net35/GuardExtensions.cs" target="content/net35" />
     <file src="Guardian.Net40/GuardExtensions.cs" target="content/net40" />
