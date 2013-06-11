@@ -7,12 +7,10 @@
     <authors>Cameron Fletcher 
 Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian/wiki</projectUrl>
-    <iconUrl>http://nuget.cameronfletcher.com/icons/guardian.png</iconUrl>
+    <iconUrl>http://nuget.cameronfletcher.com/icons/guardian_extensions.png</iconUrl>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Guardian extension methods. Mostly for empty values.
-An unobtrusive, lightweight, guard clause source code package: less than 200 lines of code.
-    </description>
+    <description>Provides extension methods for the Guardian source code package.</description>
     <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian extensions</tags>
