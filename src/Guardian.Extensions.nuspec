@@ -17,7 +17,7 @@ An unobtrusive, lightweight, guard clause source code package: less than 200 lin
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian extensions</tags>
     <dependencies>
-      <dependency id="Guardian" version="[0.0.1,2)" />
+      <dependency id="Guardian" version="$version$" />
     </dependencies>
   </metadata>
   <files>
