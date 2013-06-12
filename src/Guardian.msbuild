@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
 
   <UsingTask AssemblyFile="..\packages\xunit.runners.1.9.1\tools\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
-  <UsingTask AssemblyFile="..\packages\AssemblyVersion.MSBuild.0.0.2-alpha\tools\AssemblyVersion.MSBuild.dll" TaskName="SetAssemblyVersion" />
+  <UsingTask AssemblyFile="..\packages\AssemblyVersion.MSBuild.0.1.0\tools\AssemblyVersion.MSBuild.dll" TaskName="SetAssemblyVersion" />
   
   <PropertyGroup>
     <SolutionName>Guardian</SolutionName>
