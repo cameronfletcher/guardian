@@ -34,12 +34,12 @@ namespace Guardian.Tests
             return exception as T;
         }
 
-        public static void ShouldBeStrictArgumentNullException(this Exception exception)
+        public static void ShouldBeStrictArgumentException(this Exception exception)
         {
 #if GUARD_STRICT
             exception.ShouldBeValid<NotSupportedException>();
 #else
-            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
 #endif
         }
 

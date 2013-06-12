@@ -36,7 +36,7 @@ namespace Guardian.Tests
 
             // assert
 #if PCL
-            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
 #else
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("thing");
 #endif
@@ -53,7 +53,7 @@ namespace Guardian.Tests
 
             // assert
 #if PCL
-            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
 #else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.field");
 #endif
@@ -70,7 +70,7 @@ namespace Guardian.Tests
 
             // assert
 #if PCL
-            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
 #else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.Property");
 #endif
@@ -87,7 +87,7 @@ namespace Guardian.Tests
 
             // assert
 #if PCL
-            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
 #else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.NestedThing.field");
 #endif
@@ -104,7 +104,7 @@ namespace Guardian.Tests
 
             // assert
 #if PCL
-            exception.ShouldBeValid<ArgumentNullException>().WithUnknownParameter();
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
 #else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.NestedThing.Property");
 #endif
@@ -117,7 +117,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => default(object)));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => { return (object)null; }));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -139,7 +139,7 @@ namespace Guardian.Tests
 #pragma warning restore 429
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => (object)null));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -162,7 +162,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => array[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -175,7 +175,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => list[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -188,7 +188,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => dictionary["key"]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -201,7 +201,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => array[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -214,7 +214,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => list[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -227,7 +227,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => dictionary[2]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -240,7 +240,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.Method()));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -253,7 +253,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.NestedThing.Method()));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -266,7 +266,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => array.FirstOrDefault()));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -279,7 +279,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => parameter.Method("argument")));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]

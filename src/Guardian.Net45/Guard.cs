@@ -98,9 +98,9 @@ internal class Guard
     private static Exception GetException<T>(Func<T> expression)
     {
         var parameterName = expression == null ? "expression" : Expression.Parse(expression);
-        var exceptionType = parameterName == null || !parameterName.Contains(".")
-            ? typeof(ArgumentNullException) 
-            : typeof(ArgumentException);
+        var exceptionType = parameterName == null || parameterName.Contains(".")
+            ? typeof(ArgumentException)
+            : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
     }

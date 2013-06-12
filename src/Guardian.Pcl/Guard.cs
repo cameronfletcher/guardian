@@ -62,7 +62,7 @@ internal class Guard
         where T : class
     {
         Guard.Against.Null(expression, "expression", typeof(ArgumentNullException));
-        Guard.Against.Null(expression(), null, typeof(ArgumentNullException));
+        Guard.Against.Null(expression(), null, typeof(ArgumentException));
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ internal class Guard
         where T : struct
     {
         Guard.Against.Null(expression, "expression", typeof(ArgumentNullException));
-        Guard.Against.Null(expression(), null, typeof(ArgumentNullException));
+        Guard.Against.Null(expression(), null, typeof(ArgumentException));
     }
 
     /// <summary>
