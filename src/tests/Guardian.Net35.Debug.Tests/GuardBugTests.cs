@@ -12,7 +12,7 @@ namespace Guardian.Tests
     public class GuardBugTests
     {
         [Fact]
-        public void Bug001()
+        public void Bug01()
         {
             // arrange
             var thing = new ActualThing();

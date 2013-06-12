@@ -294,5 +294,57 @@ namespace Guardian.Tests
             // assert
             exception.ShouldBeStrictNull();
         }
+
+        // LINK (Cameron): http://msdn.microsoft.com/en-us/library/ms145421.aspx
+        [Fact]
+        public void AllTheGenericExpressions()
+        {
+            // arrange
+            var generic = new GenericType2<int>();
+
+            // act (and assert)
+            generic.GenericMethod<string>(1, "hello");
+        }
+
+        private class GenericType1<Tg1>
+        {
+            public string GenericMethod<Tgm1>(Tg1 param1, Tgm1 param2)
+            {
+                return null;
+            }
+
+            public string NonGenericMethod(Tg1 param)
+            {
+                return null;
+            }
+        }
+
+        private class GenericType2<Tg2>
+        {
+            public void GenericMethod<Tgm2>(Tg2 param1, Tgm2 param2)
+            {
+                var openGeneric = new GenericType1<Tg2>();
+                var closedGeneric = new GenericType1<int>();
+                var nonGeneric = new NonGenericType();
+
+                Guard.Expression.Parse(() => openGeneric.GenericMethod<Tgm2>(param1, param2));
+                Guard.Expression.Parse(() => openGeneric.NonGenericMethod(param1));
+                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(42, new object()));
+                Guard.Expression.Parse(() => nonGeneric.NonGenericMethod());
+
+                nonGeneric.NonGenericMethod();
+            }
+        }
+
+        private class NonGenericType
+        {
+            public string NonGenericMethod()
+            {
+                var closedGeneric = new GenericType1<int>();
+                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(42, new object()));
+
+                return null;
+            }
+        }
     }
 }
