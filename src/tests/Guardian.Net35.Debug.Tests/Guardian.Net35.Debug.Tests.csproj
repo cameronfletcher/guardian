@@ -43,6 +43,7 @@
     <Compile Include="..\..\Guardian.Net35\GuardExtensions.cs">
       <Link>GuardExtensions.cs</Link>
     </Compile>
+    <Compile Include="GuardBugTests.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="GuardExtensionsTests.cs" />
     <Compile Include="Thing.cs" />

@@ -150,7 +150,8 @@ internal class Guard
                 if (il[@byte] == (byte)OpCodes.Ldfld.Value)
                 {
                     var handle = BitConverter.ToInt32(il, @byte + 1);
-                    var member = expression.Target.GetType().Module.ResolveMember(handle);
+                    var targetType = expression.Target.GetType();
+                    var member = targetType.Module.ResolveMember(handle, targetType.GetGenericArguments(), new Type[0]);
                     memberNames.Push(member.Name);
                     continue;
                 }
