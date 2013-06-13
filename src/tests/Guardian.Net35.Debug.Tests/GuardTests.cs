@@ -300,14 +300,19 @@ namespace Guardian.Tests
         public void AllTheGenericExpressions()
         {
             // arrange
-            var generic = new GenericType2<int>();
+            var generic = new GenericType2<Thing>();
 
             // act (and assert)
-            generic.GenericMethod<string>(1, "hello");
+            generic.GenericMethod<string>(new Thing(), "hello");
         }
 
-        private class GenericType1<Tg1>
+        private class GenericType1<Tg1> where Tg1 : Thing
         {
+            public Tg1 Property
+            {
+                get { return new Thing() as Tg1; }
+            }
+
             public string GenericMethod<Tgm1>(Tg1 param1, Tgm1 param2)
             {
                 return null;
@@ -319,18 +324,28 @@ namespace Guardian.Tests
             }
         }
 
-        private class GenericType2<Tg2>
+        private class GenericType2<Tg2> where Tg2 : Thing
         {
+            public Tg2 Property { get; set; }
+
             public void GenericMethod<Tgm2>(Tg2 param1, Tgm2 param2)
             {
+                this.Property = param1;
+
                 var openGeneric = new GenericType1<Tg2>();
-                var closedGeneric = new GenericType1<int>();
+                var closedGeneric = new GenericType1<Thing>();
                 var nonGeneric = new NonGenericType();
 
                 Guard.Expression.Parse(() => openGeneric.GenericMethod<Tgm2>(param1, param2));
                 Guard.Expression.Parse(() => openGeneric.NonGenericMethod(param1));
-                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(42, new object()));
+                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(new Thing(), new object()));
                 Guard.Expression.Parse(() => nonGeneric.NonGenericMethod());
+
+                var expression = Guard.Expression.Parse(() => openGeneric.Property);
+                expression = Guard.Expression.Parse(() => closedGeneric.Property);
+                expression = Guard.Expression.Parse(() => openGeneric.Property.field); // TODO (Cameron): This returns null.
+                expression = Guard.Expression.Parse(() => closedGeneric.Property.field);
+                expression = Guard.Expression.Parse(() => nonGeneric.Property.field);
 
                 nonGeneric.NonGenericMethod();
             }
@@ -338,10 +353,15 @@ namespace Guardian.Tests
 
         private class NonGenericType
         {
+            public Thing Property
+            {
+                get { return new Thing(); }
+            }
+
             public string NonGenericMethod()
             {
-                var closedGeneric = new GenericType1<int>();
-                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(42, new object()));
+                var closedGeneric = new GenericType1<Thing>();
+                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(new Thing(), new object()));
 
                 return null;
             }

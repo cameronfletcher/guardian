@@ -159,7 +159,8 @@ internal class Guard
                 if (il[@byte] == (byte)OpCodes.Callvirt.Value || il[@byte] == (byte)OpCodes.Call.Value)
                 {
                     var handle = BitConverter.ToInt32(il, @byte + 1);
-                    var method = expression.Target.GetType().Module.ResolveMethod(handle);
+                    var targetType = expression.Target.GetType();
+                    var method = targetType.Module.ResolveMethod(handle, targetType.GetGenericArguments(), new Type[0]);
                     if (!method.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase))
                     {
                         return null;
