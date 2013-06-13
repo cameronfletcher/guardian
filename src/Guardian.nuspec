@@ -24,6 +24,11 @@ Possibly the best tool for the job. Providing the job is simple.
     <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="net35" />
+      <frameworkAssembly assemblyName="System" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System" targetFramework="net45" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="Guardian.Net35/Guard.cs" target="content/net35" />
