@@ -18,7 +18,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null((Func<object>)null));
 
             // assert
+#if PCL
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
+#else
+            exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
+#endif
         }
 
         [Fact]
@@ -31,7 +35,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("thing");
+#endif
         }
 
         [Fact]
@@ -44,7 +52,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.field));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.field");
+#endif
         }
 
         [Fact]
@@ -57,7 +69,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.Property));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.Property");
+#endif
         }
 
         [Fact]
@@ -70,7 +86,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.NestedThing.field));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.NestedThing.field");
+#endif
         }
 
         [Fact]
@@ -83,7 +103,11 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.NestedThing.Property));
 
             // assert
+#if PCL
+            exception.ShouldBeValid<ArgumentException>().WithUnknownParameter();
+#else
             exception.ShouldBeValid<ArgumentException>().WithParameter("thing.NestedThing.Property");
+#endif
         }
 
         [Fact]
@@ -93,7 +117,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => default(object)));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -103,7 +127,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => { return (object)null; }));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -115,7 +139,7 @@ namespace Guardian.Tests
 #pragma warning restore 429
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -125,7 +149,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => (object)null));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -138,7 +162,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => array[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -151,7 +175,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => list[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -164,7 +188,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => dictionary["key"]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -177,7 +201,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => array[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -190,7 +214,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => list[1]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -203,7 +227,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => dictionary[2]));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -216,7 +240,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.Method()));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -229,7 +253,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => thing.NestedThing.Method()));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -242,7 +266,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => array.FirstOrDefault()));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -255,7 +279,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null(() => parameter.Method("argument")));
 
             // assert
-            exception.ShouldBeStrictArgumentNullException();
+            exception.ShouldBeStrictArgumentException();
         }
 
         [Fact]
@@ -269,6 +293,78 @@ namespace Guardian.Tests
 
             // assert
             exception.ShouldBeStrictNull();
+        }
+
+        // LINK (Cameron): http://msdn.microsoft.com/en-us/library/ms145421.aspx
+        [Fact]
+        public void AllTheGenericExpressions()
+        {
+            // arrange
+            var generic = new GenericType2<Thing>();
+
+            // act (and assert)
+            generic.GenericMethod<string>(new Thing(), "hello");
+        }
+
+        private class GenericType1<Tg1> where Tg1 : Thing
+        {
+            public Tg1 Property
+            {
+                get { return new Thing() as Tg1; }
+            }
+
+            public string GenericMethod<Tgm1>(Tg1 param1, Tgm1 param2)
+            {
+                return null;
+            }
+
+            public string NonGenericMethod(Tg1 param)
+            {
+                return null;
+            }
+        }
+
+        private class GenericType2<Tg2> where Tg2 : Thing
+        {
+            public Tg2 Property { get; set; }
+
+            public void GenericMethod<Tgm2>(Tg2 param1, Tgm2 param2)
+            {
+                this.Property = param1;
+
+                var openGeneric = new GenericType1<Tg2>();
+                var closedGeneric = new GenericType1<Thing>();
+                var nonGeneric = new NonGenericType();
+
+                Guard.Expression.Parse(() => openGeneric.GenericMethod<Tgm2>(param1, param2));
+                Guard.Expression.Parse(() => openGeneric.NonGenericMethod(param1));
+                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(new Thing(), new object()));
+                Guard.Expression.Parse(() => nonGeneric.NonGenericMethod());
+
+                var expression = Guard.Expression.Parse(() => openGeneric.Property);
+                expression = Guard.Expression.Parse(() => closedGeneric.Property);
+                expression = Guard.Expression.Parse(() => openGeneric.Property.field); // TODO (Cameron): This returns null.
+                expression = Guard.Expression.Parse(() => closedGeneric.Property.field);
+                expression = Guard.Expression.Parse(() => nonGeneric.Property.field);
+
+                nonGeneric.NonGenericMethod();
+            }
+        }
+
+        private class NonGenericType
+        {
+            public Thing Property
+            {
+                get { return new Thing(); }
+            }
+
+            public string NonGenericMethod()
+            {
+                var closedGeneric = new GenericType1<Thing>();
+                Guard.Expression.Parse(() => closedGeneric.GenericMethod<object>(new Thing(), new object()));
+
+                return null;
+            }
         }
     }
 }

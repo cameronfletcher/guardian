@@ -4,7 +4,7 @@
     <id>Guardian</id>
     <title>Guardian</title>
     <version>0.0.1</version>
-    <authors>Cameron Fletcher
+    <authors>Cameron Fletcher, 
 Guardian contributors</authors>
     <projectUrl>https://github.com/cameronfletcher/guardian/wiki</projectUrl>
     <iconUrl>http://nuget.cameronfletcher.com/icons/guardian.png</iconUrl>
@@ -21,13 +21,19 @@ An unobtrusive, lightweight, guard clause source code package: less than 200 lin
 
 Possibly the best tool for the job. Providing the job is simple.
     </description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="net35" />
+      <frameworkAssembly assemblyName="System" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System" targetFramework="net45" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="Guardian.Net35/Guard.cs" target="content/net35" />
     <file src="Guardian.Net40/Guard.cs" target="content/net40" />
     <file src="Guardian.Net45/Guard.cs" target="content/net45" />
+    <file src="Guardian.Pcl/Guard.cs" target="content/portable-win+net40+sl40+wp71" />
   </files>
 </package>

@@ -2,10 +2,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
 
   <UsingTask AssemblyFile="..\packages\xunit.runners.1.9.1\tools\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
-  <UsingTask AssemblyFile="..\packages\AssemblyVersion.MSBuild.0.0.2-alpha\tools\AssemblyVersion.MSBuild.dll" TaskName="SetAssemblyVersion" />
+  <UsingTask AssemblyFile="..\packages\AssemblyVersion.MSBuild.0.1.0\tools\AssemblyVersion.MSBuild.dll" TaskName="SetAssemblyVersion" />
   
   <PropertyGroup>
-    <Solution>Guardian.sln</Solution>
+    <SolutionName>Guardian</SolutionName>
     <BuildDir>..\build</BuildDir>
     <Nuget>..\packages\NuGet.CommandLine.2.5.0\tools\NuGet.exe</Nuget>
     <Flavour Condition=" '$(Flavour)' == '' ">alpha</Flavour>
@@ -21,7 +21,7 @@
   </Target>
     
   <Target Name="Build" DependsOnTargets="UpdateVersion">
-    <MSBuild Projects="$(Solution)" Properties="Configuration=Fixed" />
+    <MSBuild Projects="$(SolutionName).sln" Properties="Configuration=Fixed" />
   </Target>
 
   <Target Name="CreateBuildDir">
@@ -39,10 +39,12 @@
 
   <Target Name="Package" DependsOnTargets="CreateBuildDir;UpdateVersion">
     <Exec Command="$(Nuget) pack Guardian.nuspec -OutputDir &quot;$(BuildDir)&quot; -Version $(SemanticVersion)" />
+    <Exec Command="$(Nuget) pack Guardian.Extensions.nuspec -OutputDir &quot;$(BuildDir)&quot; -Version $(SemanticVersion)" />
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package">
     <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.$(SemanticVersion).nupkg&quot; $(ApiKey) -Source $(NugetUrl)" />
+    <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.Extensions.$(SemanticVersion).nupkg&quot; $(ApiKey) -Source $(NugetUrl)" />
   </Target>
 
 </Project>
