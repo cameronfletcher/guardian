@@ -1,9 +1,10 @@
 [Bb]uild/
 [Bb]in/
 [Oo]bj/
-TestResults
+[Tt]est[Rr]esults
 *.suo
 *.user
+*.sln.cache
 *.sln.docstates
 StyleCop.Cache
 _ReSharper*

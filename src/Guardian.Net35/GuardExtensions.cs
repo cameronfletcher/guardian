@@ -19,10 +19,98 @@ using System.Linq;
 internal static class GuardExtensions
 {
     /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Null<T>(this Guard guard, T value, string parameterName)
+        where T : class
+    {
+        Guard.Against.Null(() => parameterName);
+
+        if (value == null)
+        {
+            throw new ArgumentNullException(parameterName, "Value cannot be empty.");
+        }
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    /// <param name="propertyName">Name of the property.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Null<T>(this Guard guard, T value, string parameterName, string propertyName)
+        where T : class
+    {
+        Guard.Against.Null(() => parameterName);
+        Guard.Against.Null(() => propertyName);
+
+        if (value == null)
+        {
+            throw new ArgumentException("Value cannot be empty.", string.Concat(parameterName, ".", propertyName));
+        }
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Null<T>(this Guard guard, T? value, string parameterName)
+        where T : struct
+    {
+        Guard.Against.Null(() => parameterName);
+
+        if (!value.HasValue)
+        {
+            throw new ArgumentNullException(parameterName, "Value cannot be empty.");
+        }
+    }
+
+    /// <summary>
+    /// Guard against null argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    /// <param name="propertyName">Name of the property.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Null<T>(this Guard guard, T? value, string parameterName, string propertyName)
+        where T : struct
+    {
+        Guard.Against.Null(() => parameterName);
+        Guard.Against.Null(() => propertyName);
+
+        if (!value.HasValue)
+        {
+            throw new ArgumentException("Value cannot be empty.", string.Concat(parameterName, ".", propertyName));
+        }
+    }
+
+    /// <summary>
     /// Guard against null or empty argument values.
     /// </summary>
     /// <typeparam name="T">The type of value to guard against.</typeparam>
-    /// <param name="guard">The Guard class.</param>
+    /// <param name="guard">The guard clause.</param>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
@@ -33,7 +121,28 @@ internal static class GuardExtensions
 
         if (!expression().Any())
         {
-            throw new ArgumentException("Value cannot be empty.", Guard.Expression.Parse(expression) ?? Guard.Expression.Unknown);
+            throw new ArgumentException("Value cannot be empty.", Guard.Expression.Parse(expression));
+        }
+    }
+
+    /// <summary>
+    /// Guard against null or empty argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The Guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrEmpty<T>(this Guard guard, IEnumerable<T> value, string parameterName)
+    {
+        Guard.Against.Null(value, "value");
+        Guard.Against.Null(parameterName, "parameterName");
+
+        if (!value.Any())
+        {
+            throw new ArgumentException("Value cannot be empty.", parameterName);
         }
     }
 }

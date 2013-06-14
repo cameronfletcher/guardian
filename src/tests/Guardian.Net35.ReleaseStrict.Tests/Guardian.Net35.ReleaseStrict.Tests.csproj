@@ -45,6 +45,9 @@
     <Compile Include="..\Guardian.Net35.Debug.Tests\ExceptionExtensions.cs">
       <Link>ExceptionExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\GuardBugTests.cs">
+      <Link>GuardBugTests.cs</Link>
+    </Compile>
     <Compile Include="..\Guardian.Net35.Debug.Tests\GuardExtensionsTests.cs">
       <Link>GuardExtensionsTests.cs</Link>
     </Compile>
