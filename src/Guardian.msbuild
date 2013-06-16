@@ -11,6 +11,10 @@
     <Flavour Condition=" '$(BranchName)' == 'release' ">beta</Flavour>
     <Flavour Condition=" '$(BranchName)' == 'master' ">release</Flavour>
     <Flavour Condition=" '$(Flavour)' == '' ">alpha</Flavour>
+    <NugetPublishUrl Condition=" '$(Flavour)' == 'beta' Or '$(Flavour)' == 'release' ">$(NuGetUrl)</NugetPublishUrl>
+    <NugetPublishUrl Condition=" '$(NugetPublishUrl)' == '' ">$(NuGetDevUrl)</NugetPublishUrl>
+    <NugetPublishApiKey Condition=" '$(Flavour)' == 'beta' Or '$(Flavour)' == 'release' ">$(NugetApiKey)</NugetPublishApiKey>
+    <NugetPublishApiKey Condition=" '$(NugetPublishApiKey)' == '' ">$(NugetDevApiKey)</NugetPublishApiKey>
   </PropertyGroup>
   
   <Target Name="UpdateVersion">
@@ -45,8 +49,8 @@
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package">
-    <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.$(SemanticVersion).nupkg&quot; $(ApiKey) -Source $(NugetUrl)" />
-    <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.Extensions.$(SemanticVersion).nupkg&quot; $(ApiKey) -Source $(NugetUrl)" />
+    <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.$(SemanticVersion).nupkg&quot; $(NugetPublishApiKey) -Source $(NugetPublishUrl)" />
+    <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.Extensions.$(SemanticVersion).nupkg&quot; $(NugetPublishApiKey) -Source $(NugetPublishUrl)" />
   </Target>
 
 </Project>
