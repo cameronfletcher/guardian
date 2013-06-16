@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Guardian.Extensions</id>
+    <title>Guardian Extensions</title>
+    <version>0.0.1</version>
+    <authors>Cameron Fletcher 
+Guardian contributors</authors>
+    <projectUrl>https://github.com/cameronfletcher/guardian/wiki</projectUrl>
+    <iconUrl>http://nuget.cameronfletcher.com/icons/guardian_extensions.png</iconUrl>
+    <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides extension methods for the Guardian source code package.</description>
+    <releaseNotes>TBD</releaseNotes>
+    <copyright>Copyright (c) Guardian contributors.</copyright>
+    <tags>guard clause null arguments guardian extensions</tags>
+    <dependencies>
+      <dependency id="Guardian" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Guardian.Net35/GuardExtensions.cs" target="content/net35" />
+    <file src="Guardian.Net40/GuardExtensions.cs" target="content/net40" />
+    <file src="Guardian.Net45/GuardExtensions.cs" target="content/net45" />
+    <file src="Guardian.Pcl/GuardExtensions.cs" target="content/portable-win+net40+sl40+wp71" />
+  </files>
+</package>

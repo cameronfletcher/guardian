@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B905353-676F-4101-8CE6-1CCF9EF584DD}</ProjectGuid>
+    <ProjectGuid>{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Guardian.Tests</RootNamespace>
-    <AssemblyName>Guardian.Net35.Debug.Tests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyName>Guardian.Pcl.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -17,18 +17,20 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;PCL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
-      <HintPath>..\..\..\packages\FluentAssertions.2.0.1\lib\net35\FluentAssertions.dll</HintPath>
+      <HintPath>..\..\..\packages\FluentAssertions.2.0.1\lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
     <Reference Include="xunit">
       <HintPath>..\..\..\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
     </Reference>
@@ -37,18 +39,25 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\..\Guardian.Net35\Guard.cs">
-      <Link>Guard.cs</Link>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\ExceptionExtensions.cs">
+      <Link>ExceptionExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Guardian.Net35\GuardExtensions.cs">
-      <Link>GuardExtensions.cs</Link>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\GuardBugTests.cs">
+      <Link>GuardBugTests.cs</Link>
     </Compile>
-    <Compile Include="GuardBugTests.cs" />
-    <Compile Include="ExceptionExtensions.cs" />
-    <Compile Include="GuardExtensionsTests.cs" />
-    <Compile Include="Thing.cs" />
-    <Compile Include="GuardTests.cs" />
+    <Compile Include="..\Guardian.Net35.Debug.Tests\GuardTests.cs">
+      <Link>GuardTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\Thing.cs">
+      <Link>Thing.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Guardian.Pcl\Guardian.Pcl.csproj">
+      <Project>{5294f057-960c-48e7-ae95-ae9d84510066}</Project>
+      <Name>Guardian.Pcl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
