@@ -37,19 +37,19 @@
   
   <Target Name="Test" DependsOnTargets="Build;CreateBuildDir">
     <ItemGroup>
-      <TestAssemblies Include="**/bin/**/*.Tests*.dll" />
+      <TestAssemblies Include="**/bin/**/*.Test*.dll" />
     </ItemGroup>
     <Message Text="TestAssemblies: @(TestAssemblies)" />
     <xunit Assemblies="@(TestAssemblies)" Html="$(BuildDir)\TestResults.html" />
   </Target>
 
   <Target Name="Package" DependsOnTargets="CreateBuildDir;UpdateVersion">
-    <Exec Command="$(Nuget) pack Guardian.nuspec -OutputDir &quot;$(BuildDir)&quot; -Version $(SemanticVersion)" />
+    <Exec Command="$(Nuget) pack $(SolutionName).nuspec -OutputDir &quot;$(BuildDir)&quot; -Version $(SemanticVersion)" />
     <Exec Command="$(Nuget) pack Guardian.Extensions.nuspec -OutputDir &quot;$(BuildDir)&quot; -Version $(SemanticVersion)" />
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package">
-    <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.$(SemanticVersion).nupkg&quot; $(NugetPublishApiKey) -Source $(NugetPublishUrl)" />
+    <Exec Command="$(Nuget) push &quot;$(BuildDir)\$(SolutionName).$(SemanticVersion).nupkg&quot; $(NugetPublishApiKey) -Source $(NugetPublishUrl)" />
     <Exec Command="$(Nuget) push &quot;$(BuildDir)\Guardian.Extensions.$(SemanticVersion).nupkg&quot; $(NugetPublishApiKey) -Source $(NugetPublishUrl)" />
   </Target>
 
