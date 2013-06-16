@@ -8,6 +8,8 @@
     <SolutionName>Guardian</SolutionName>
     <BuildDir>..\build</BuildDir>
     <Nuget>..\packages\NuGet.CommandLine.2.5.0\tools\NuGet.exe</Nuget>
+    <Flavour Condition=" '$(BranchName)' == 'release' ">beta</Flavour>
+    <Flavour Condition=" '$(BranchName)' == 'master' ">release</Flavour>
     <Flavour Condition=" '$(Flavour)' == '' ">alpha</Flavour>
   </PropertyGroup>
   
