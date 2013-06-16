@@ -190,7 +190,6 @@
     <Rule Id="CA2146" Action="Error" />
     <Rule Id="CA2147" Action="Error" />
     <Rule Id="CA2149" Action="Error" />
-    <Rule Id="CA2151" Action="Error" />
     <Rule Id="CA2200" Action="Error" />
     <Rule Id="CA2201" Action="Error" />
     <Rule Id="CA2202" Action="Error" />
@@ -232,7 +231,6 @@
     <Rule Id="CA2241" Action="Error" />
     <Rule Id="CA2242" Action="Error" />
     <Rule Id="CA2243" Action="Error" />
-    <Rule Id="CA5122" Action="Error" />
   </Rules>
   <Rules AnalyzerId="Microsoft.Analyzers.NativeCodeAnalysis" RuleNamespace="Microsoft.Rules.Native">
     <Rule Id="C26100" Action="Error" />
