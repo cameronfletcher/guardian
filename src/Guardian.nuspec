@@ -21,10 +21,7 @@ An unobtrusive, lightweight, guard clause source code package: less than 200 lin
 
 Possibly the best tool for the job. Providing the job is simple.
     </description>
-    <releaseNotes>Added portable class library version
-Fixed bug where expression parsing would throw an exception
-Added .NET Framework assembly reference for System.dll
-Changed the exception type from ArgumentNullException to ArgumentException that is thrown when the expression cannot be parsed</releaseNotes>
+    <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
     <frameworkAssemblies>
