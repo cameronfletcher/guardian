@@ -6,6 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build.bat = build.bat
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
 		GlobalSuppressions.cs = GlobalSuppressions.cs
+		Guardian.Extensions.nuspec = Guardian.Extensions.nuspec
 		Guardian.msbuild = Guardian.msbuild
 		Guardian.nuspec = Guardian.nuspec
 		Guardian.ruleset = Guardian.ruleset
@@ -52,6 +53,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5D8029
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Pcl", "Guardian.Pcl\Guardian.Pcl.csproj", "{5294F057-960C-48E7-AE95-AE9D84510066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Pcl.Tests", "tests\Guardian.Pcl.Tests\Guardian.Pcl.Tests.csproj", "{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Fixed|Any CPU = Fixed|Any CPU
@@ -87,6 +92,10 @@ Global
 		{EF3EF2FE-F74A-46C8-B865-38816068BFC5}.Fixed|Any CPU.Build.0 = Release|Any CPU
 		{EF100FD7-28A4-420D-9E45-EE1A78877A07}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
 		{EF100FD7-28A4-420D-9E45-EE1A78877A07}.Fixed|Any CPU.Build.0 = Release|Any CPU
+		{5294F057-960C-48E7-AE95-AE9D84510066}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
+		{5294F057-960C-48E7-AE95-AE9D84510066}.Fixed|Any CPU.Build.0 = Debug|Any CPU
+		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +113,6 @@ Global
 		{30611299-93A3-45BD-89D7-ECF5EAD2F8A6} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{EF3EF2FE-F74A-46C8-B865-38816068BFC5} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{EF100FD7-28A4-420D-9E45-EE1A78877A07} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
+		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 	EndGlobalSection
 EndGlobal

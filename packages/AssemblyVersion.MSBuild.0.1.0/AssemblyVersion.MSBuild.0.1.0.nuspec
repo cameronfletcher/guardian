@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>AssemblyVersion.MSBuild</id>
-    <version>0.0.2-alpha</version>
+    <version>0.1.0</version>
     <title>AssemblyVersion.MSBuild</title>
     <authors>Cameron Fletcher</authors>
     <owners>Cameron Fletcher</owners>
