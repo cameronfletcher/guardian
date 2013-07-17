@@ -6,6 +6,8 @@ namespace Guardian.Tests
 {
     using System;
     using System.Collections.Generic;
+    using Guardian.Tests.Extensions;
+    using Guardian.Tests.Objects;
     using Xunit;
 
     public class GuardExtensionsTests
