@@ -14,6 +14,8 @@ using System.Runtime.CompilerServices;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 
 // ReSharper disable CheckNamespace
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable PossibleMultipleEnumeration
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 

@@ -16,7 +16,7 @@ using System.Reflection.Emit;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 
 // ReSharper disable CheckNamespace
-// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable ExpressionIsAlwaysNull
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable UnusedMember.Global
@@ -148,6 +148,11 @@ internal class Guard
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Not Hungarian notation.")]
         public static string Parse<T>(Func<T> expression)
         {
+            if (expression == null)
+            {
+                throw GetException(expression);
+            }
+
             if (expression.Target == null)
             {
                 return null;
@@ -168,19 +173,21 @@ internal class Guard
                         return null;
                     }
 
-                    if (data.Length > 1 && !OpCodeWhitelist.Contains(opCode))
+                    if (OpCodeWhitelist.Contains(opCode) || data.Length <= 1)
                     {
-                        var handle = BitConverter.ToInt32(data, 0);
-                        var targetType = expression.Target.GetType();
-                        var member = targetType.Module.ResolveMember(handle, targetType.GetGenericArguments(), new Type[0]);
-                        if (member.MemberType == MemberTypes.Method &&
-                            (((MethodInfo)member).GetParameters().Any() || !member.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase)))
-                        {
-                            return null;
-                        }
-
-                        memberNames.Push(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
+                        continue;
                     }
+
+                    var handle = BitConverter.ToInt32(data, 0);
+                    var targetType = expression.Target.GetType();
+                    var member = targetType.Module.ResolveMember(handle, targetType.GetGenericArguments(), new Type[0]);
+                    if (member.MemberType == MemberTypes.Method &&
+                        (((MethodInfo)member).GetParameters().Any() || !member.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        return null; // not a property
+                    }
+
+                    memberNames.Push(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
                 }
 
                 return string.Join(".", memberNames.Reverse().ToArray());
@@ -238,8 +245,7 @@ internal class Guard
                 case OperandType.InlineI8:
                 case OperandType.InlineR:
                     return 8;
-                case OperandType.InlineNone:
-                default:
+                default: /* OperandType.InlineNone */
                     return 0;
             }
         }
