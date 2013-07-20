@@ -46,6 +46,7 @@ internal class Guard
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     public static Guard Against
     {
+        [DebuggerStepThrough]
         get { return Instance; }
     }
 
