@@ -40,12 +40,6 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\..\Guardian.Pcl\Guard.cs">
-      <Link>Subjects\Guard.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Guardian.Pcl\GuardExtensions.cs">
-      <Link>Subjects\GuardExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\Guardian.Net35.Debug.Tests\Bugs\Bug001.cs">
       <Link>Bugs\Bug001.cs</Link>
     </Compile>
@@ -75,7 +69,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Subjects\Note.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
