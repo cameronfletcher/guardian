@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>..\..\Guardian.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
@@ -38,16 +39,19 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\Guardian.Net35\Guard.cs">
-      <Link>Guard.cs</Link>
+      <Link>Subjects\Guard.cs</Link>
     </Compile>
     <Compile Include="..\..\Guardian.Net35\GuardExtensions.cs">
-      <Link>GuardExtensions.cs</Link>
+      <Link>Subjects\GuardExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Guardian.Net35.Debug.Tests\ExceptionExtensions.cs">
-      <Link>ExceptionExtensions.cs</Link>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\Bugs\Bug001.cs">
+      <Link>Bugs\Bug001.cs</Link>
     </Compile>
-    <Compile Include="..\Guardian.Net35.Debug.Tests\GuardBugTests.cs">
-      <Link>GuardBugTests.cs</Link>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\Extensions\ExceptionExtensions.cs">
+      <Link>Extensions\ExceptionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\GuardExpressionTests.cs">
+      <Link>GuardExpressionTests.cs</Link>
     </Compile>
     <Compile Include="..\Guardian.Net35.Debug.Tests\GuardExtensionsTests.cs">
       <Link>GuardExtensionsTests.cs</Link>
@@ -55,14 +59,21 @@
     <Compile Include="..\Guardian.Net35.Debug.Tests\GuardTests.cs">
       <Link>GuardTests.cs</Link>
     </Compile>
-    <Compile Include="..\Guardian.Net35.Debug.Tests\Thing.cs">
-      <Link>Thing.cs</Link>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\Objects\Class.cs">
+      <Link>Objects\Class.cs</Link>
+    </Compile>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\Objects\Structure.cs">
+      <Link>Objects\Structure.cs</Link>
+    </Compile>
+    <Compile Include="..\Guardian.Net35.Debug.Tests\Objects\Thing.cs">
+      <Link>Objects\Thing.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
