@@ -20,11 +20,7 @@ namespace Guardian.Tests
             var exception = Record.Exception(() => Guard.Against.Null((Func<object>)null));
 
             // assert
-#if PCL
             exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
-#else
-            exception.ShouldBeValid<ArgumentNullException>().WithParameter("expression");
-#endif
         }
 
         [Fact]

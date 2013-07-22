@@ -4,7 +4,9 @@
 
 namespace Guardian.Tests
 {
+    using System;
     using FluentAssertions;
+    using Guardian.Tests.Extensions;
     using Guardian.Tests.Objects;
     using Xunit;
 
@@ -95,6 +97,11 @@ namespace Guardian.Tests
         [Fact]
         public void UnsupportedExpressionParsing()
         {
+            // null check!
+            Record.Exception(() => Guard.Expression.Parse((Func<object>)null))
+                .ShouldBeValid<ArgumentNullException>()
+                .WithParameter("expression");
+
             var closedGeneric = new GenericType<int>();
 
             // A generic method call that does not have any generic context.
