@@ -56,7 +56,9 @@ internal class Guard
     /// <typeparam name="T">The type of value to guard against.</typeparam>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+#if GUARD_STRICT
     [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.Null(value, parameterName) instead.")]
+#endif
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(Func<T> expression)
@@ -106,7 +108,9 @@ internal class Guard
     /// <typeparam name="T">The type of value to guard against.</typeparam>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+#if GUARD_STRICT
     [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.Null(value, parameterName) instead.")]
+#endif
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
     public void Null<T>(Func<T?> expression)

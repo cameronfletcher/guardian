@@ -17,6 +17,7 @@ using System.Reflection.Emit;
 
 // ReSharper disable CheckNamespace
 // ReSharper disable ExpressionIsAlwaysNull
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable UnusedMember.Global
@@ -96,7 +97,7 @@ internal class Guard
     [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
     private static Exception GetException<T>(Func<T> expression)
     {
-        var parameterName = expression == null ? "expression" : Expression.Parse(expression);
+        var parameterName = expression == null ? Expression.Parse(() => expression) : Expression.Parse(expression);
         var exceptionType = parameterName == null || parameterName.Contains(".")
             ? typeof(ArgumentException)
             : typeof(ArgumentNullException);
@@ -134,7 +135,7 @@ internal class Guard
         private static readonly OpCode[] OpCodeBlacklist = typeof(OpCodes).GetFields(BindingFlags.Static | BindingFlags.Public)
             .Select(field => field.GetValue(null))
             .Cast<OpCode>()
-            .Where(opCode => opCode.Name.StartsWith(OpCodes.Ldelem.Name, StringComparison.OrdinalIgnoreCase))
+            .Where(opCode => opCode.Name.StartsWith(OpCodes.Ldelem.Name, StringComparison.OrdinalIgnoreCase)) // all indexer calls
             .Union(new[] { OpCodes.Newobj })
             .ToArray();
 

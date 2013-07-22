@@ -13,6 +13,8 @@ using System.Linq;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 
 // ReSharper disable CheckNamespace
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable PossibleMultipleEnumeration
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 
@@ -28,7 +30,9 @@ internal static class GuardExtensions
     /// <param name="guard">The Guard clause.</param>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+#if GUARD_STRICT
     [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.NullOrEmpty(value, parameterName) instead.")]
+#endif
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrEmpty<T>(this Guard guard, Func<IEnumerable<T>> expression)
@@ -69,7 +73,9 @@ internal static class GuardExtensions
     /// <param name="guard">The guard clause.</param>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+#if GUARD_STRICT
     [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.NullOrEmptyOrNullElements(value, parameterName) instead.")]
+#endif
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrEmptyOrNullElements<T>(this Guard guard, Func<IEnumerable<T>> expression)
@@ -90,7 +96,9 @@ internal static class GuardExtensions
     /// <param name="guard">The guard clause.</param>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+#if GUARD_STRICT
     [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.NullOrEmptyOrNullElements(value, parameterName) instead.")]
+#endif
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrEmptyOrNullElements<T>(this Guard guard, Func<IEnumerable<T?>> expression)
