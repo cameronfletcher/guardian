@@ -1,18 +1,18 @@
-﻿// <copyright file="GuardBugTests.cs" company="Guardian contributors">
+﻿// <copyright file="Bug001.cs" company="Guardian contributors">
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 
-namespace Guardian.Tests
+namespace Guardian.Tests.Bugs
 {
     using System.Diagnostics.CodeAnalysis;
     using FluentAssertions;
     using Xunit;
 
     [SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder", Justification = "Not on this occasion.")]
-    public class GuardBugTests
+    public class Bug001
     {
         [Fact]
-        public void Bug01()
+        public void BugFix001()
         {
             // arrange
             var thing = new ActualThing();

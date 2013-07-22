@@ -23,6 +23,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45", "Guardian.Net45\Guardian.Net45.csproj", "{10545F43-C1A8-4758-9096-C295959DD16F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{63BF3FFC-FCE5-49AB-8449-70522F927F44}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Settings.StyleCop = tests\Settings.StyleCop
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35.Debug.Tests", "tests\Guardian.Net35.Debug.Tests\Guardian.Net35.Debug.Tests.csproj", "{1B905353-676F-4101-8CE6-1CCF9EF584DD}"
 EndProject

@@ -21,6 +21,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>..\..\Guardian.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
@@ -38,21 +40,25 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\Guardian.Net35\Guard.cs">
-      <Link>Guard.cs</Link>
+      <Link>Subjects\Guard.cs</Link>
     </Compile>
     <Compile Include="..\..\Guardian.Net35\GuardExtensions.cs">
-      <Link>GuardExtensions.cs</Link>
+      <Link>Subjects\GuardExtensions.cs</Link>
     </Compile>
-    <Compile Include="GuardBugTests.cs" />
-    <Compile Include="ExceptionExtensions.cs" />
+    <Compile Include="Objects\Class.cs" />
+    <Compile Include="Bugs\Bug001.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="GuardExtensionsTests.cs" />
-    <Compile Include="Thing.cs" />
+    <Compile Include="GuardExpressionTests.cs" />
+    <Compile Include="Objects\Structure.cs" />
+    <Compile Include="Objects\Thing.cs" />
     <Compile Include="GuardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

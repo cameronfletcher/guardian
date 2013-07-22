@@ -9,7 +9,12 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1636:FileHeaderCopyrightTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
+
 // ReSharper disable CheckNamespace
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable PossibleMultipleEnumeration
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 
@@ -25,7 +30,9 @@ internal static class GuardExtensions
     /// <param name="guard">The Guard clause.</param>
     /// <param name="expression">An expression returning the value to guard against.</param>
     [DebuggerStepThrough]
+#if GUARD_STRICT
     [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.NullOrEmpty(value, parameterName) instead.")]
+#endif
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrEmpty<T>(this Guard guard, Func<IEnumerable<T>> expression)
@@ -56,6 +63,94 @@ internal static class GuardExtensions
         if (!value.Any())
         {
             throw new ArgumentException("Value cannot be empty.", parameterName);
+        }
+    }
+
+    /// <summary>
+    /// Guard against null or empty or null elements argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+#if GUARD_STRICT
+    [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.NullOrEmptyOrNullElements(value, parameterName) instead.")]
+#endif
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrEmptyOrNullElements<T>(this Guard guard, Func<IEnumerable<T>> expression)
+        where T : class
+    {
+        Guard.Against.NullOrEmpty(expression);
+
+        if (expression().Any(element => element == null))
+        {
+            throw new ArgumentException("Value cannot contain null elements.");
+        }
+    }
+
+    /// <summary>
+    /// Guard against null or empty or null elements argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+#if GUARD_STRICT
+    [Obsolete("This method is not fully supported in portable class libraries. Consider using Guard.Against.NullOrEmptyOrNullElements(value, parameterName) instead.")]
+#endif
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrEmptyOrNullElements<T>(this Guard guard, Func<IEnumerable<T?>> expression)
+        where T : struct
+    {
+        Guard.Against.NullOrEmpty(expression);
+
+        if (expression().Any(element => !element.HasValue))
+        {
+            throw new ArgumentException("Value cannot contain null elements.");
+        }
+    }
+
+    /// <summary>
+    /// Guard against null or empty or null elements argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The Guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrEmptyOrNullElements<T>(this Guard guard, IEnumerable<T> value, string parameterName)
+        where T : class
+    {
+        Guard.Against.NullOrEmpty(value, parameterName);
+
+        if (value.Any(element => element == null))
+        {
+            throw new ArgumentException("Value cannot contain null elements.", parameterName);
+        }
+    }
+
+    /// <summary>
+    /// Guard against null or empty or null elements argument values.
+    /// </summary>
+    /// <typeparam name="T">The type of value to guard against.</typeparam>
+    /// <param name="guard">The Guard clause.</param>
+    /// <param name="value">The value to guard against.</param>
+    /// <param name="parameterName">Name of the parameter.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrEmptyOrNullElements<T>(this Guard guard, IEnumerable<T?> value, string parameterName)
+        where T : struct
+    {
+        Guard.Against.NullOrEmpty(value, parameterName);
+
+        if (value.Any(element => !element.HasValue))
+        {
+            throw new ArgumentException("Value cannot contain null elements.", parameterName);
         }
     }
 }

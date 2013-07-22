@@ -2,11 +2,11 @@
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 
-namespace Guardian.Tests
+namespace Guardian.Tests.Objects
 {
     using System.Diagnostics.CodeAnalysis;
 
-    public class Thing
+    internal class Thing
     {
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "To aid distinction.")]
         public int? field
