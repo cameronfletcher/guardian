@@ -21,7 +21,10 @@ An unobtrusive, lightweight, guard clause source code package: less than 300 lin
 
 Possibly the best tool for the job. Providing the job is simple.
     </description>
-    <releaseNotes>TBD</releaseNotes>
+    <releaseNotes>Complete re-write of IL parsing for expression parsing.
+Added DebuggerStepThrough to Against property getter.
+Fixed bug where generic argument expressions don't always parse.
+    </releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
     <frameworkAssemblies>
