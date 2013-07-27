@@ -11,7 +11,7 @@ Guardian contributors</authors>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides extension methods for the Guardian source code package.</description>
-    <releaseNotes>TBD</releaseNotes>
+    <releaseNotes>Added icon for NuGet package.</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian extensions</tags>
     <dependencies>

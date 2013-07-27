@@ -2,7 +2,7 @@
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 
-namespace Guardian.Tests
+namespace Guardian.Tests.Extensions
 {
     using System;
     using FluentAssertions;
