@@ -1,4 +1,4 @@
-// <copyright file="CommonAssemblyInfo.cs" company="Guardian contributors">
+﻿// <copyright file="CommonAssemblyInfo.cs" company="Guardian contributors">
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 // <summary>Guardian. Mostly of null values.</summary>
@@ -8,7 +8,7 @@ using System.Reflection;
 
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Guardian contributors")]
-[assembly: AssemblyCopyright("Copyright © Guardian contributors. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright Â© Guardian contributors. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyProduct("Guardian")]
