@@ -11,6 +11,8 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1636:FileHeaderCopyrightTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 
+#pragma warning disable 0436
+
 // ReSharper disable CheckNamespace
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantNameQualifier
