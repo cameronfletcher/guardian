@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSContent xmlns="http://schemas.microsoft.com/developer/vscontent/2005">
+  <Content>
+    <FileName>Guardian.snippet</FileName>
+    <DisplayName>Guardian Snippet</DisplayName>
+    <Description>Guards against null argument values.</Description>
+    <FileContentType>Code Snippet</FileContentType>
+    <ContentVersion>2.0</ContentVersion>
+    <Attributes>
+      <Attribute name="lang" value="CSharp"/>
+    </Attributes>
+  </Content>
+</VSContent>

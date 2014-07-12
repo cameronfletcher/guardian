@@ -35,5 +35,7 @@ Possibly the best tool for the job. Providing the job is simple.
     <file src="Guardian.Net40/Guard.cs" target="content/net40" />
     <file src="Guardian.Net45/Guard.cs" target="content/net45" />
     <file src="Guardian.Pcl/Guard.cs" target="content/portable-win+net40+sl40+wp71" />
+    <file src="Guardian.Snippet/bin/Guardian.vsix" target="tools" />
+    <file src="Guardian.Snippet/Guardian.vscontent" target="tools" />
   </files>
 </package>
