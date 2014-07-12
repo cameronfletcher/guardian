@@ -29,6 +29,7 @@ Possibly the best tool for the job. Providing the job is simple.
       <frameworkAssembly assemblyName="System" targetFramework="net40" />
       <frameworkAssembly assemblyName="System" targetFramework="net45" />
     </frameworkAssemblies>
+    <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
     <file src="Guardian.Net35/Guard.cs" target="content/net35" />

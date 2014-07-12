@@ -17,6 +17,7 @@ Guardian contributors</authors>
     <dependencies>
       <dependency id="Guardian" version="$version$" />
     </dependencies>
+    <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
     <file src="Guardian.Net35/GuardExtensions.cs" target="content/net35" />
