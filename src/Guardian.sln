@@ -104,7 +104,6 @@ Global
 		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.Build.0 = Debug|Any CPU
 		{6979F037-28CA-4397-9FEE-BCBC4461BCF7}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
-		{6979F037-28CA-4397-9FEE-BCBC4461BCF7}.Fixed|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
