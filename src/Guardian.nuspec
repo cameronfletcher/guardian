@@ -21,10 +21,7 @@ An unobtrusive, lightweight, guard clause source code package: less than 300 lin
 
 Possibly the best tool for the job. Providing the job is simple.
     </description>
-    <releaseNotes>Complete re-write of IL parsing for expression parsing.
-Added DebuggerStepThrough to Against property getter.
-Fixed bug where generic argument expressions don't always parse.
-    </releaseNotes>
+    <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
     <frameworkAssemblies>
@@ -32,11 +29,14 @@ Fixed bug where generic argument expressions don't always parse.
       <frameworkAssembly assemblyName="System" targetFramework="net40" />
       <frameworkAssembly assemblyName="System" targetFramework="net45" />
     </frameworkAssemblies>
+    <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
     <file src="Guardian.Net35/Guard.cs" target="content/net35" />
     <file src="Guardian.Net40/Guard.cs" target="content/net40" />
     <file src="Guardian.Net45/Guard.cs" target="content/net45" />
     <file src="Guardian.Pcl/Guard.cs" target="content/portable-win+net40+sl40+wp71" />
+    <file src="Guardian.Snippet/Guardian.vsix" target="tools" />
+    <file src="Guardian.Snippet/Guardian.vscontent" target="tools" />
   </files>
 </package>
