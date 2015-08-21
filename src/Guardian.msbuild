@@ -37,7 +37,7 @@
   
   <Target Name="Test" DependsOnTargets="Build;CreateBuildDir">
     <ItemGroup>
-      <TestAssemblies Include="**/bin/**/*.Test*.dll" />
+      <TestAssemblies Include="**/bin/**/*.Tests.dll" />
     </ItemGroup>
     <Message Text="TestAssemblies: @(TestAssemblies)" />
     <xunit Assemblies="@(TestAssemblies)" Html="$(BuildDir)\TestResults.html" />
