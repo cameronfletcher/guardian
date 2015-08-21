@@ -1,4 +1,4 @@
-﻿// <copyright file="CommonAssemblyInfo.cs" company="Guardian contributors">
+// <copyright file="CommonAssemblyInfo.cs" company="Guardian contributors">
 //  Copyright (c) Guardian contributors. All rights reserved.
 // </copyright>
 // <summary>Guardian. Mostly of null values.</summary>
@@ -13,8 +13,8 @@ using System.Reflection;
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyProduct("Guardian")]
 
-[assembly: AssemblyVersion("0.0.1.0")]
-[assembly: AssemblyFileVersion("0.0.1.0")]
-[assembly: AssemblyInformationalVersion("0.0.1-alpha")]
+[assembly: AssemblyVersion("0.6.0.0")]
+[assembly: AssemblyFileVersion("0.6.0.0")]
+[assembly: AssemblyInformationalVersion("0.6.0-alpha")]
 
 [assembly: SuppressMessage("Microsoft.Usage", "CA2243:AttributeStringLiteralsShouldParseCorrectly", Justification = "Using SemVer.")]
