@@ -10,7 +10,11 @@ namespace Guardian.Tests.Extensions
     internal enum ExceptionType
     {
         Null = 0,
-        Empty = 1
+        Empty,
+        Negative,
+        NegativeOrZero,
+        Positive,
+        PositiveOrZero
     }
 
     internal static class ExceptionExtensions
@@ -21,7 +25,32 @@ namespace Guardian.Tests.Extensions
             exception.Should().NotBeNull("because a null exception is invalid");
             exception.Should().BeOfType<T>();
 
-            if (typeof(ArgumentException).IsAssignableFrom(typeof(T)))
+            if (typeof(ArgumentOutOfRangeException).IsAssignableFrom(typeof(T)))
+            {
+                var expectedMessage = default(string);
+
+                switch (type)
+                {
+                    case ExceptionType.Negative:
+                        expectedMessage = "Value cannot be negative.";
+                        break;
+
+                    case ExceptionType.NegativeOrZero:
+                        expectedMessage = "Value cannot be negative or zero.";
+                        break;
+
+                    case ExceptionType.Positive:
+                        expectedMessage = "Value cannot be positive.";
+                        break;
+
+                    case ExceptionType.PositiveOrZero:
+                        expectedMessage = "Value cannot be positive or zero.";
+                        break;
+                }
+
+                exception.Message.Should().StartWith(expectedMessage);
+            }
+            else if (typeof(ArgumentException).IsAssignableFrom(typeof(T)))
             {
                 exception.Message.Should().StartWith(type == ExceptionType.Null ? "Value cannot be null." : "Value cannot be empty.");
             }
@@ -55,6 +84,13 @@ namespace Guardian.Tests.Extensions
         public static void WithParameter(this ArgumentException exception, string parameterName)
         {
             exception.ParamName.Should().Be(parameterName);
+        }
+
+        public static ArgumentOutOfRangeException WithActualValue(this ArgumentOutOfRangeException exception, object actualValue)
+        {
+            exception.ActualValue.Should().Be(actualValue);
+
+            return exception;
         }
 
         public static void WithUnknownParameter(this ArgumentException exception)

@@ -243,7 +243,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void Positive(this Guard guard, Func<int> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value <= 0, "Value has to be positive.");
+        Guard.Against.OutOfRange(expression, value => value > 0, "Value cannot be positive.");
     }
 
     /// <summary>
@@ -256,7 +256,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void PositiveOrZero(this Guard guard, Func<int> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value < 0, "Value has to be positive or zero.");
+        Guard.Against.OutOfRange(expression, value => value >= 0, "Value cannot be positive or zero.");
     }
 
     /// <summary>
@@ -269,7 +269,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void Positive(this Guard guard, Func<long> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value <= 0, "Value has to be positive.");
+        Guard.Against.OutOfRange(expression, value => value > 0, "Value cannot be positive.");
     }
 
     /// <summary>
@@ -282,7 +282,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void PositiveOrZero(this Guard guard, Func<long> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value < 0, "Value has to be positive or zero.");
+        Guard.Against.OutOfRange(expression, value => value >= 0, "Value cannot be positive or zero.");
     }
 
     /// <summary>
@@ -295,7 +295,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void Negative(this Guard guard, Func<int> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value >= 0, "Value has to be negative.");
+        Guard.Against.OutOfRange(expression, value => value < 0, "Value cannot be negative.");
     }
 
     /// <summary>
@@ -308,7 +308,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NegativeOrZero(this Guard guard, Func<int> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value > 0, "Value has to be negative or zero.");
+        Guard.Against.OutOfRange(expression, value => value <= 0, "Value cannot be negative or zero.");
     }
 
     /// <summary>
@@ -321,7 +321,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void Negative(this Guard guard, Func<long> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value >= 0, "Value has to be negative.");
+        Guard.Against.OutOfRange(expression, value => value < 0, "Value cannot be negative.");
     }
 
     /// <summary>
@@ -334,7 +334,7 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NegativeOrZero(this Guard guard, Func<long> expression)
     {
-        Guard.Against.OutOfRange(expression, value => value > 0, "Value has to be negative or zero.");
+        Guard.Against.OutOfRange(expression, value => value <= 0, "Value cannot be negative or zero.");
     }
 
     [DebuggerStepThrough]
