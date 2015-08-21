@@ -7,7 +7,7 @@
   <PropertyGroup>
     <SolutionName>Guardian</SolutionName>
     <BuildDir>..\build</BuildDir>
-    <Nuget>..\packages\NuGet.CommandLine.2.8.2\tools\NuGet.exe</Nuget>
+    <Nuget>..\packages\NuGet.CommandLine.2.8.6\tools\NuGet.exe</Nuget>
     <Flavour Condition=" '$(BranchName)' == 'release' ">beta</Flavour>
     <Flavour Condition=" '$(BranchName)' == 'master' ">release</Flavour>
     <Flavour Condition=" '$(Flavour)' == '' ">alpha</Flavour>
@@ -16,17 +16,21 @@
     <NugetPublishApiKey Condition=" '$(Flavour)' == 'beta' Or '$(Flavour)' == 'release' ">$(NugetApiKey)</NugetPublishApiKey>
     <NugetPublishApiKey Condition=" '$(NugetPublishApiKey)' == '' ">$(NugetDevApiKey)</NugetPublishApiKey>
   </PropertyGroup>
-  
-  <Target Name="UpdateVersion">
-   	<ReadLinesFromFile File="Version.txt">
+
+  <Target Name="PackageRestore">
+    <Exec Command="$(Nuget) restore $(SolutionName).sln -PackagesDirectory &quot;..\packages&quot;" />
+  </Target>
+
+  <Target Name="UpdateVersion" DependsOnTargets="PackageRestore">
+    <ReadLinesFromFile File="Version.txt">
   		<Output TaskParameter="Lines" PropertyName="VersionNumber" />
     </ReadLinesFromFile>
     <SetAssemblyVersion FileName="CommonAssemblyInfo.cs" VersionNumber="$(VersionNumber)" Flavour="$(Flavour)" BuildNumber="$(BuildNumber)">
       <Output TaskParameter="SemanticVersion" PropertyName="SemanticVersion" />
     </SetAssemblyVersion>
   </Target>
-    
-  <Target Name="Build" DependsOnTargets="UpdateVersion">
+
+  <Target Name="Build" DependsOnTargets="UpdateVersion;PackageRestore">
     <MSBuild Projects="$(SolutionName).sln" Properties="Configuration=Fixed" />
   </Target>
 
