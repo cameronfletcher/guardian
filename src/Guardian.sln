@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF4EEAB8-434C-47EB-80FE-98AC8F391729}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,18 +14,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Guardian.ruleset = Guardian.ruleset
 		..\LICENSE.mit.txt = ..\LICENSE.mit.txt
 		nuget.config = nuget.config
+		packages.config = packages.config
 		Settings.StyleCop = Settings.StyleCop
+		stylecop.json = stylecop.json
 		Version.txt = Version.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{63BF3FFC-FCE5-49AB-8449-70522F927F44}"
 	ProjectSection(SolutionItems) = preProject
 		tests\Settings.StyleCop = tests\Settings.StyleCop
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5D802904-1097-4336-8CC3-AA16D127D281}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net40", "Guardian.Net40\Guardian.Net40.csproj", "{5CB2A009-4CA5-429D-BB19-0783D172D806}"
