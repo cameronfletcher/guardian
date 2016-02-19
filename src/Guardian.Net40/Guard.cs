@@ -49,6 +49,7 @@ internal class Guard
     /// <summary>
     /// Provides instance and extension methods for the <see cref="Guard"/> clause.
     /// </summary>
+    /// <value>The <see cref="Guard"/> clause extensibility endpoint.</value>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:PropertySummaryDocumentationMustMatchAccessors", Justification = "Not here.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     public static Guard Against
