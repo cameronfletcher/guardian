@@ -104,9 +104,7 @@ internal class Guard
     private static Exception GetException<T>(Func<T> expression)
     {
         var parameterName = expression == null ? Expression.Parse(() => expression) : Expression.Parse(expression);
-        var exceptionType = parameterName == null || parameterName.Contains(".")
-            ? typeof(ArgumentException)
-            : typeof(ArgumentNullException);
+        var exceptionType = parameterName == null || parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
     }
@@ -198,8 +196,8 @@ internal class Guard
                     memberNames.Push(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
                 }
 
-                return string.Join(".", memberNames.Reverse());
-            }            
+                return memberNames.Any() ? string.Join(".", memberNames.Reverse()) : null;
+            }
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Not Hungarian notation.")]
