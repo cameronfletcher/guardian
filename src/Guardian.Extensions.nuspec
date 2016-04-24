@@ -11,7 +11,9 @@ Guardian contributors</authors>
     <licenseUrl>https://raw.github.com/cameronfletcher/guardian/master/LICENSE.mit.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides extension methods for the Guardian source code package.</description>
-    <releaseNotes>TBD</releaseNotes>
+    <releaseNotes>Added Negative and Positive guard extensions
+Changed formatting to support StyleCop Analyzers
+    </releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian extensions</tags>
     <dependencies>
