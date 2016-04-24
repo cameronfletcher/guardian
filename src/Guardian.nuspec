@@ -21,8 +21,7 @@ An unobtrusive, lightweight, guard clause source code package: less than 300 lin
 
 Possibly the best tool for the job. Providing the job is simple.
     </description>
-    <releaseNotes>Added Guardian.vsix to NuGet package to add guard snippet to Visual Studio
-Changed formatting to support StyleCop Analyzers</releaseNotes>
+    <releaseNotes>TBD</releaseNotes>
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
     <frameworkAssemblies>
