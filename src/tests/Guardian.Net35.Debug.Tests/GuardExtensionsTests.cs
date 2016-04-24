@@ -6,6 +6,7 @@ namespace Guardian.Tests
 {
     using System;
     using System.Collections.Generic;
+    using FluentAssertions;
     using Guardian.Tests.Extensions;
     using Guardian.Tests.Objects;
     using Xunit;
@@ -98,6 +99,110 @@ namespace Guardian.Tests
 
             // assert
             exception.ShouldBeStrictNull();
+        }
+
+        [Fact]
+        public void Negative()
+        {
+            // arrange
+            var size = -8;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Negative(() => size));
+
+            // assert
+            exception.ShouldBeValid<ArgumentOutOfRangeException>(ExceptionType.Negative).WithActualValue(size).WithParameter("size");
+        }
+
+        [Fact]
+        public void NegativeOrZero()
+        {
+            // arrange
+            var size = 0;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NegativeOrZero(() => size));
+
+            // assert
+            exception.ShouldBeValid<ArgumentOutOfRangeException>(ExceptionType.NegativeOrZero).WithActualValue(size).WithParameter("size");
+        }
+
+        [Fact]
+        public void ValidNegative()
+        {
+            // arrange
+            var size = 8;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Negative(() => size));
+
+            // assert
+            exception.Should().BeNull();
+        }
+
+        [Fact]
+        public void ValidNegativeZero()
+        {
+            // arrange
+            var size = 0;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Negative(() => size));
+
+            // assert
+            exception.Should().BeNull();
+        }
+
+        [Fact]
+        public void Positive()
+        {
+            // arrange
+            var size = 8;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Positive(() => size));
+
+            // assert
+            exception.ShouldBeValid<ArgumentOutOfRangeException>(ExceptionType.Positive).WithActualValue(size).WithParameter("size");
+        }
+
+        [Fact]
+        public void PositiveOrZero()
+        {
+            // arrange
+            var size = 0;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.PositiveOrZero(() => size));
+
+            // assert
+            exception.ShouldBeValid<ArgumentOutOfRangeException>(ExceptionType.PositiveOrZero).WithActualValue(size).WithParameter("size");
+        }
+
+        [Fact]
+        public void ValidPositive()
+        {
+            // arrange
+            var size = -8;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Positive(() => size));
+
+            // assert
+            exception.Should().BeNull();
+        }
+
+        [Fact]
+        public void ValidPositiveZero()
+        {
+            // arrange
+            var size = 0;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Positive(() => size));
+
+            // assert
+            exception.Should().BeNull();
         }
     }
 }

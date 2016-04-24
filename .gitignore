@@ -1,6 +1,7 @@
-[Bb]uild/
+/[Bb]uild/
 [Bb]in/
 [Oo]bj/
+.vs/
 [Tt]est[Rr]esults
 *.suo
 *.user
@@ -9,3 +10,4 @@
 StyleCop.Cache
 _ReSharper*
 Thumbs.db
+*.sln.ide

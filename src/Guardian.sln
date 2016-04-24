@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF4EEAB8-434C-47EB-80FE-98AC8F391729}"
 	ProjectSection(SolutionItems) = preProject
 		build.bat = build.bat
@@ -10,10 +12,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Guardian.msbuild = Guardian.msbuild
 		Guardian.nuspec = Guardian.nuspec
 		Guardian.ruleset = Guardian.ruleset
+		Guardian.vsix = Guardian.vsix
 		..\LICENSE.mit.txt = ..\LICENSE.mit.txt
 		nuget.config = nuget.config
+		packages.config = packages.config
 		Settings.StyleCop = Settings.StyleCop
+		stylecop.json = stylecop.json
 		Version.txt = Version.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{63BF3FFC-FCE5-49AB-8449-70522F927F44}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Settings.StyleCop = tests\Settings.StyleCop
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net40", "Guardian.Net40\Guardian.Net40.csproj", "{5CB2A009-4CA5-429D-BB19-0783D172D806}"
@@ -21,11 +31,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35", "Guardian.Net35\Guardian.Net35.csproj", "{C178E723-E6E8-4ACB-B93B-5B7E2FFA812C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45", "Guardian.Net45\Guardian.Net45.csproj", "{10545F43-C1A8-4758-9096-C295959DD16F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{63BF3FFC-FCE5-49AB-8449-70522F927F44}"
-	ProjectSection(SolutionItems) = preProject
-		tests\Settings.StyleCop = tests\Settings.StyleCop
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35.Debug.Tests", "tests\Guardian.Net35.Debug.Tests\Guardian.Net35.Debug.Tests.csproj", "{1B905353-676F-4101-8CE6-1CCF9EF584DD}"
 EndProject
@@ -51,14 +56,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45.Release.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45.ReleaseStrict.Tests", "tests\Guardian.Net45.ReleaseStrict.Tests\Guardian.Net45.ReleaseStrict.Tests.csproj", "{EF100FD7-28A4-420D-9E45-EE1A78877A07}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5D802904-1097-4336-8CC3-AA16D127D281}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Pcl", "Guardian.Pcl\Guardian.Pcl.csproj", "{5294F057-960C-48E7-AE95-AE9D84510066}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Pcl.Tests", "tests\Guardian.Pcl.Tests\Guardian.Pcl.Tests.csproj", "{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Snippet", "Guardian.Snippet\Guardian.Snippet.csproj", "{6979F037-28CA-4397-9FEE-BCBC4461BCF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,7 @@ Global
 		{5294F057-960C-48E7-AE95-AE9D84510066}.Fixed|Any CPU.Build.0 = Debug|Any CPU
 		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.Build.0 = Debug|Any CPU
+		{6979F037-28CA-4397-9FEE-BCBC4461BCF7}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Guard against a null argument</Title>
+      <Description>Guards against null argument values.</Description>
+      <Author>Cameron Fletcher, Guardian contributors</Author>
+      <Shortcut>guard</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp" Kind="method body">
+        <![CDATA[Guard.Against.Null(() => $Argument$);]]>
+      </Code>
+      <Declarations>
+        <Object>
+          <ID>Argument</ID>
+          <Type>System.Object</Type>
+          <ToolTip>The value to guard against being null.</ToolTip>
+          <Default>argument</Default>
+        </Object>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

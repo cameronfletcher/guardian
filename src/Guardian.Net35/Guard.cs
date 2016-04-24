@@ -15,6 +15,8 @@ using System.Reflection.Emit;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1636:FileHeaderCopyrightTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1641:FileHeaderCompanyNameTextMustMatch", Scope = "Module", Justification = "Content is valid.")]
 
+#pragma warning disable 0436
+
 // ReSharper disable CheckNamespace
 // ReSharper disable ExpressionIsAlwaysNull
 // ReSharper disable MemberCanBePrivate.Global
@@ -46,6 +48,7 @@ internal class Guard
     /// <summary>
     /// Provides instance and extension methods for the <see cref="Guard"/> clause.
     /// </summary>
+    /// <value>The <see cref="Guard"/> clause extensibility endpoint.</value>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:PropertySummaryDocumentationMustMatchAccessors", Justification = "Not here.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     public static Guard Against
@@ -98,9 +101,7 @@ internal class Guard
     private static Exception GetException<T>(Func<T> expression)
     {
         var parameterName = expression == null ? Expression.Parse(() => expression) : Expression.Parse(expression);
-        var exceptionType = parameterName == null || parameterName.Contains(".")
-            ? typeof(ArgumentException)
-            : typeof(ArgumentNullException);
+        var exceptionType = parameterName == null || parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
     }
@@ -192,7 +193,7 @@ internal class Guard
                     memberNames.Push(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
                 }
 
-                return string.Join(".", memberNames.Reverse().ToArray());
+                return memberNames.Any() ? string.Join(".", memberNames.Reverse().ToArray()) : null;
             }
         }
 

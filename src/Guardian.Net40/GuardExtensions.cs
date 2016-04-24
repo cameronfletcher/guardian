@@ -233,4 +233,122 @@ internal static class GuardExtensions
             throw new ArgumentException("Value cannot contain null elements.", parameterName);
         }
     }
+
+    /// <summary>
+    /// Guard against positive argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Positive(this Guard guard, Func<int> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value > 0, "Value cannot be positive.");
+    }
+
+    /// <summary>
+    /// Guard against positive or zero argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void PositiveOrZero(this Guard guard, Func<int> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value >= 0, "Value cannot be positive or zero.");
+    }
+
+    /// <summary>
+    /// Guard against positive argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Positive(this Guard guard, Func<long> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value > 0, "Value cannot be positive.");
+    }
+
+    /// <summary>
+    /// Guard against positive or zero argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void PositiveOrZero(this Guard guard, Func<long> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value >= 0, "Value cannot be positive or zero.");
+    }
+
+    /// <summary>
+    /// Guard against negative argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Negative(this Guard guard, Func<int> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value < 0, "Value cannot be negative.");
+    }
+
+    /// <summary>
+    /// Guard against negative or zero argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NegativeOrZero(this Guard guard, Func<int> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value <= 0, "Value cannot be negative or zero.");
+    }
+
+    /// <summary>
+    /// Guard against negative argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void Negative(this Guard guard, Func<long> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value < 0, "Value cannot be negative.");
+    }
+
+    /// <summary>
+    /// Guard against negative or zero argument values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NegativeOrZero(this Guard guard, Func<long> expression)
+    {
+        Guard.Against.OutOfRange(expression, value => value <= 0, "Value cannot be negative or zero.");
+    }
+
+    [DebuggerStepThrough]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    private static void OutOfRange<T>(this Guard guard, Func<T> expression, Func<T, bool> rangePredicate, string errorMessage)
+    {
+        var value = expression();
+
+        if (rangePredicate(value))
+        {
+            throw new ArgumentOutOfRangeException(Guard.Expression.Parse(expression), value, errorMessage);
+        }
+    }
 }
