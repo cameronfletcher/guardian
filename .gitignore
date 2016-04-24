@@ -1,12 +1,13 @@
-[Bb]uild/
+/[Bb]uild/
 [Bb]in/
 [Oo]bj/
+.vs/
 [Tt]est[Rr]esults
 *.suo
 *.user
-*.sln.ide
 *.sln.cache
 *.sln.docstates
 StyleCop.Cache
 _ReSharper*
 Thumbs.db
+*.sln.ide

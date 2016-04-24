@@ -35,7 +35,7 @@ internal class Guard
     private static readonly Guard Instance = new Guard();
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private member.")]
-    private static readonly Dictionary<Type, Func<string, string, ArgumentException>> ExceptionFactories = 
+    private static readonly Dictionary<Type, Func<string, string, ArgumentException>> ExceptionFactories =
         new Dictionary<Type, Func<string, string, ArgumentException>>
         {
             { typeof(ArgumentException), (message, parameterName) => new ArgumentException(message, parameterName) },
@@ -50,6 +50,7 @@ internal class Guard
     /// <summary>
     /// Provides instance and extension methods for the <see cref="Guard"/> clause.
     /// </summary>
+    /// <value>The <see cref="Guard"/> clause extensibility endpoint.</value>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:PropertySummaryDocumentationMustMatchAccessors", Justification = "Not here.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     public static Guard Against
@@ -104,9 +105,7 @@ internal class Guard
     private static Exception GetException<T>(Func<T> expression)
     {
         var parameterName = expression == null ? Expression.Parse(() => expression) : Expression.Parse(expression);
-        var exceptionType = parameterName == null || parameterName.Contains(".")
-            ? typeof(ArgumentException)
-            : typeof(ArgumentNullException);
+        var exceptionType = parameterName == null || parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
     }
@@ -156,9 +155,9 @@ internal class Guard
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Not Hungarian notation.")]
         public static string Parse<T>(Func<T> expression)
         {
-            if (expression == null) 
+            if (expression == null)
             {
-                throw GetException(expression); 
+                throw GetException(expression);
             }
 
             if (expression.Target == null)
@@ -181,13 +180,13 @@ internal class Guard
                         return null;
                     }
 
-                    if (OpCodeWhitelist.Contains(opCode) || data.Length <= 1) 
+                    if (OpCodeWhitelist.Contains(opCode) || data.Length <= 1)
                     {
-                        continue; 
+                        continue;
                     }
 
                     var handle = BitConverter.ToInt32(data, 0);
-                    var targetType = expression.Target.GetType(); 
+                    var targetType = expression.Target.GetType();
                     var member = targetType.Module.ResolveMember(handle, targetType.GetGenericArguments(), new Type[0]);
                     if (member.MemberType == MemberTypes.Method &&
                         (((MethodInfo)member).GetParameters().Any() || !member.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase)))
@@ -198,8 +197,8 @@ internal class Guard
                     memberNames.Push(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
                 }
 
-                return string.Join(".", memberNames.Reverse());
-            }            
+                return memberNames.Any() ? string.Join(".", memberNames.Reverse()) : null;
+            }
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Not Hungarian notation.")]

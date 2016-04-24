@@ -8,13 +8,13 @@ using System.Reflection;
 
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Guardian contributors")]
-[assembly: AssemblyCopyright("Copyright Â© Guardian contributors. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright © Guardian contributors. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyProduct("Guardian")]
 
-[assembly: AssemblyVersion("0.0.1.0")]
-[assembly: AssemblyFileVersion("0.0.1.0")]
-[assembly: AssemblyInformationalVersion("0.0.1-alpha")]
+[assembly: AssemblyVersion("0.6.1.0")]
+[assembly: AssemblyFileVersion("0.6.1.0")]
+[assembly: AssemblyInformationalVersion("0.6.1-alpha")]
 
 [assembly: SuppressMessage("Microsoft.Usage", "CA2243:AttributeStringLiteralsShouldParseCorrectly", Justification = "Using SemVer.")]
