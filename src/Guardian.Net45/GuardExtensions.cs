@@ -357,6 +357,32 @@ internal static class GuardExtensions
         Guard.Against.OutOfRange(expression, value => value <= 0, "Value cannot be negative or zero.");
     }
 
+    /// <summary>
+    /// Guard against null or relative URI values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrRelative(this Guard guard, Func<Uri> expression)
+    {
+    }
+
+    /// <summary>
+    /// Guard against null or absolute URI values.
+    /// </summary>
+    /// <param name="guard">The guard clause.</param>
+    /// <param name="expression">An expression returning the value to guard against.</param>
+    [DebuggerStepThrough]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
+    [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
+    public static void NullOrAbsolute(this Guard guard, Func<Uri> expression)
+    {
+    }
+
     [DebuggerStepThrough]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
