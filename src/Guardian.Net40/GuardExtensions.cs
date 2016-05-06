@@ -348,6 +348,12 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrRelative(this Guard guard, Func<Uri> expression)
     {
+        Guard.Against.Null(expression);
+
+        if (!expression().IsAbsoluteUri)
+        {
+            throw new ArgumentException("Value cannot be a relative URI.", Guard.Expression.Parse(expression));
+        }
     }
 
     /// <summary>
@@ -360,6 +366,12 @@ internal static class GuardExtensions
     [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "guard", Justification = "By design.")]
     public static void NullOrAbsolute(this Guard guard, Func<Uri> expression)
     {
+        Guard.Against.Null(expression);
+
+        if (expression().IsAbsoluteUri)
+        {
+            throw new ArgumentException("Value cannot be an absolute URI.", Guard.Expression.Parse(expression));
+        }
     }
 
     [DebuggerStepThrough]
