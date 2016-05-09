@@ -14,7 +14,9 @@ namespace Guardian.Tests.Extensions
         Negative,
         NegativeOrZero,
         Positive,
-        PositiveOrZero
+        PositiveOrZero,
+        RelativeUri,
+        AbsoluteUri
     }
 
     internal static class ExceptionExtensions
@@ -46,13 +48,42 @@ namespace Guardian.Tests.Extensions
                     case ExceptionType.PositiveOrZero:
                         expectedMessage = "Value cannot be positive or zero.";
                         break;
+
+                    default:
+                        expectedMessage = "Should not get here: debug test";
+                        break;
                 }
 
                 exception.Message.Should().StartWith(expectedMessage);
             }
             else if (typeof(ArgumentException).IsAssignableFrom(typeof(T)))
             {
-                exception.Message.Should().StartWith(type == ExceptionType.Null ? "Value cannot be null." : "Value cannot be empty.");
+                var expectedMessage = default(string);
+
+                switch (type)
+                {
+                    case ExceptionType.Null:
+                        expectedMessage = "Value cannot be null.";
+                        break;
+
+                    case ExceptionType.Empty:
+                        expectedMessage = "Value cannot be empty.";
+                        break;
+
+                    case ExceptionType.RelativeUri:
+                        expectedMessage = "Value cannot be a relative URI.";
+                        break;
+
+                    case ExceptionType.AbsoluteUri:
+                        expectedMessage = "Value cannot be an absolute URI.";
+                        break;
+
+                    default:
+                        expectedMessage = "Should not get here: debug test";
+                        break;
+                }
+
+                exception.Message.Should().StartWith(expectedMessage);
             }
 
             if (typeof(NotSupportedException).IsAssignableFrom(typeof(T)))

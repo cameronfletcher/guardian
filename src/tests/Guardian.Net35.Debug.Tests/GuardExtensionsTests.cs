@@ -204,5 +204,83 @@ namespace Guardian.Tests
             // assert
             exception.Should().BeNull();
         }
+
+        [Fact]
+        public void NullUriRelative()
+        {
+            // arrange
+            var uri = (Uri)null;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NullOrRelative(() => uri));
+
+            // assert
+            exception.ShouldBeValid<ArgumentNullException>().WithParameter("uri");
+        }
+
+        [Fact]
+        public void RelativeUri()
+        {
+            // arrange
+            var uri = new Uri(@"subdirectory/resource.html", UriKind.Relative);
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NullOrRelative(() => uri));
+
+            // assert
+            exception.ShouldBeValid<ArgumentException>(ExceptionType.RelativeUri).WithParameter("uri");
+        }
+
+        [Fact]
+        public void ValidAbsoluteUri()
+        {
+            // arrange
+            var uri = new Uri(@"http://www.test.com/");
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NullOrRelative(() => uri));
+
+            // assert
+            exception.Should().BeNull();
+        }
+
+        [Fact]
+        public void NullUriAbsolute()
+        {
+            // arrange
+            var uri = (Uri)null;
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NullOrAbsolute(() => uri));
+
+            // assert
+            exception.ShouldBeValid<ArgumentNullException>().WithParameter("uri");
+        }
+
+        [Fact]
+        public void AbsoluteUri()
+        {
+            // arrange
+            var uri = new Uri(@"http://www.test.com/");
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NullOrAbsolute(() => uri));
+
+            // assert
+            exception.ShouldBeValid<ArgumentException>(ExceptionType.AbsoluteUri).WithParameter("uri");
+        }
+
+        [Fact]
+        public void ValidRelativeUri()
+        {
+            // arrange
+            var uri = new Uri(@"subdirectory/resource.html", UriKind.Relative);
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.NullOrAbsolute(() => uri));
+
+            // assert
+            exception.Should().BeNull();
+        }
     }
 }
