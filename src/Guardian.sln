@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF4EEAB8-434C-47EB-80FE-98AC8F391729}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,7 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\LICENSE.mit.txt = ..\LICENSE.mit.txt
 		nuget.config = nuget.config
 		packages.config = packages.config
-		Settings.StyleCop = Settings.StyleCop
 		stylecop.json = stylecop.json
 		Version.txt = Version.txt
 	EndProjectSection

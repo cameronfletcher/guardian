@@ -52,6 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CopyVsixExtensionFiles>False</CopyVsixExtensionFiles>
+    <NoWarn>0819</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -109,6 +110,6 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="bin\Guardian.vsix" DestinationFolder="..\"/>
+    <Copy SourceFiles="bin\Guardian.vsix" DestinationFolder="..\" />
   </Target>
 </Project>
