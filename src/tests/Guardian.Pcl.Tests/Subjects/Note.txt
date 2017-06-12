@@ -1,1 +1,0 @@
-﻿// NOTE (Cameron): There are no subjects because the a PCL library cannot be a test library so the Guard clause is imported.

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF4EEAB8-434C-47EB-80FE-98AC8F391729}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,7 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\LICENSE.mit.txt = ..\LICENSE.mit.txt
 		nuget.config = nuget.config
 		packages.config = packages.config
-		Settings.StyleCop = Settings.StyleCop
 		stylecop.json = stylecop.json
 		Version.txt = Version.txt
 	EndProjectSection
@@ -28,17 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{63BF3FFC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net40", "Guardian.Net40\Guardian.Net40.csproj", "{5CB2A009-4CA5-429D-BB19-0783D172D806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35", "Guardian.Net35\Guardian.Net35.csproj", "{C178E723-E6E8-4ACB-B93B-5B7E2FFA812C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45", "Guardian.Net45\Guardian.Net45.csproj", "{10545F43-C1A8-4758-9096-C295959DD16F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35.Debug.Tests", "tests\Guardian.Net35.Debug.Tests\Guardian.Net35.Debug.Tests.csproj", "{1B905353-676F-4101-8CE6-1CCF9EF584DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35.DebugStrict.Tests", "tests\Guardian.Net35.DebugStrict.Tests\Guardian.Net35.DebugStrict.Tests.csproj", "{1A1D84C3-FED0-4C07-9AB7-7738FF7FB79D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35.Release.Tests", "tests\Guardian.Net35.Release.Tests\Guardian.Net35.Release.Tests.csproj", "{59B4EEDB-627E-4847-ADDB-6CD0D6DB8B6A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net35.ReleaseStrict.Tests", "tests\Guardian.Net35.ReleaseStrict.Tests\Guardian.Net35.ReleaseStrict.Tests.csproj", "{FB2C7370-9E79-4E67-B4DA-44FB9C5378B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net40.Debug.Tests", "tests\Guardian.Net40.Debug.Tests\Guardian.Net40.Debug.Tests.csproj", "{92C2EB6A-0BE7-407A-A4C1-2CB01CAC88A9}"
 EndProject
@@ -56,10 +45,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45.Release.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Net45.ReleaseStrict.Tests", "tests\Guardian.Net45.ReleaseStrict.Tests\Guardian.Net45.ReleaseStrict.Tests.csproj", "{EF100FD7-28A4-420D-9E45-EE1A78877A07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Pcl", "Guardian.Pcl\Guardian.Pcl.csproj", "{5294F057-960C-48E7-AE95-AE9D84510066}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Pcl.Tests", "tests\Guardian.Pcl.Tests\Guardian.Pcl.Tests.csproj", "{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guardian.Snippet", "Guardian.Snippet\Guardian.Snippet.csproj", "{6979F037-28CA-4397-9FEE-BCBC4461BCF7}"
 EndProject
 Global
@@ -69,18 +54,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5CB2A009-4CA5-429D-BB19-0783D172D806}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
 		{5CB2A009-4CA5-429D-BB19-0783D172D806}.Fixed|Any CPU.Build.0 = Debug|Any CPU
-		{C178E723-E6E8-4ACB-B93B-5B7E2FFA812C}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
-		{C178E723-E6E8-4ACB-B93B-5B7E2FFA812C}.Fixed|Any CPU.Build.0 = Debug|Any CPU
 		{10545F43-C1A8-4758-9096-C295959DD16F}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
 		{10545F43-C1A8-4758-9096-C295959DD16F}.Fixed|Any CPU.Build.0 = Debug|Any CPU
-		{1B905353-676F-4101-8CE6-1CCF9EF584DD}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B905353-676F-4101-8CE6-1CCF9EF584DD}.Fixed|Any CPU.Build.0 = Debug|Any CPU
-		{1A1D84C3-FED0-4C07-9AB7-7738FF7FB79D}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A1D84C3-FED0-4C07-9AB7-7738FF7FB79D}.Fixed|Any CPU.Build.0 = Debug|Any CPU
-		{59B4EEDB-627E-4847-ADDB-6CD0D6DB8B6A}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
-		{59B4EEDB-627E-4847-ADDB-6CD0D6DB8B6A}.Fixed|Any CPU.Build.0 = Release|Any CPU
-		{FB2C7370-9E79-4E67-B4DA-44FB9C5378B5}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
-		{FB2C7370-9E79-4E67-B4DA-44FB9C5378B5}.Fixed|Any CPU.Build.0 = Release|Any CPU
 		{92C2EB6A-0BE7-407A-A4C1-2CB01CAC88A9}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
 		{92C2EB6A-0BE7-407A-A4C1-2CB01CAC88A9}.Fixed|Any CPU.Build.0 = Debug|Any CPU
 		{ECDA6AA5-0CF8-4B0C-ACB6-A7EFCD6437D5}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
@@ -97,20 +72,12 @@ Global
 		{EF3EF2FE-F74A-46C8-B865-38816068BFC5}.Fixed|Any CPU.Build.0 = Release|Any CPU
 		{EF100FD7-28A4-420D-9E45-EE1A78877A07}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
 		{EF100FD7-28A4-420D-9E45-EE1A78877A07}.Fixed|Any CPU.Build.0 = Release|Any CPU
-		{5294F057-960C-48E7-AE95-AE9D84510066}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
-		{5294F057-960C-48E7-AE95-AE9D84510066}.Fixed|Any CPU.Build.0 = Debug|Any CPU
-		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6}.Fixed|Any CPU.Build.0 = Debug|Any CPU
 		{6979F037-28CA-4397-9FEE-BCBC4461BCF7}.Fixed|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1B905353-676F-4101-8CE6-1CCF9EF584DD} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
-		{1A1D84C3-FED0-4C07-9AB7-7738FF7FB79D} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
-		{59B4EEDB-627E-4847-ADDB-6CD0D6DB8B6A} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
-		{FB2C7370-9E79-4E67-B4DA-44FB9C5378B5} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{92C2EB6A-0BE7-407A-A4C1-2CB01CAC88A9} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{ECDA6AA5-0CF8-4B0C-ACB6-A7EFCD6437D5} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{655B8246-1218-4913-AFD9-5599F412F7A0} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
@@ -119,6 +86,5 @@ Global
 		{30611299-93A3-45BD-89D7-ECF5EAD2F8A6} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{EF3EF2FE-F74A-46C8-B865-38816068BFC5} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 		{EF100FD7-28A4-420D-9E45-EE1A78877A07} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
-		{9E6FB1BD-A69C-4557-B5FB-7909F9B540B6} = {63BF3FFC-FCE5-49AB-8449-70522F927F44}
 	EndGlobalSection
 EndGlobal
