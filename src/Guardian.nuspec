@@ -17,7 +17,7 @@ An unobtrusive, lightweight, guard clause source code package: less than 300 lin
       Guard.Against.Null(() =&gt; parameter);
 
       May be extended like this:
-      Guard.Against.Empty(() =&gt; collection);
+      Guard.Against.NullOrEmpty(() =&gt; collection);
 
 Possibly the best tool for the job. Providing the job is simple.
     </description>
@@ -25,17 +25,15 @@ Possibly the best tool for the job. Providing the job is simple.
     <copyright>Copyright (c) Guardian contributors.</copyright>
     <tags>guard clause null arguments guardian</tags>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System" targetFramework="net35" />
       <frameworkAssembly assemblyName="System" targetFramework="net40" />
       <frameworkAssembly assemblyName="System" targetFramework="net45" />
     </frameworkAssemblies>
     <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
-    <file src="Guardian.Net35/Guard.cs" target="content/net35" />
     <file src="Guardian.Net40/Guard.cs" target="content/net40" />
     <file src="Guardian.Net45/Guard.cs" target="content/net45" />
-    <file src="Guardian.Pcl/Guard.cs" target="content/portable-win+net40+sl40+wp71" />
+    <file src="Guardian.NetStandard/Guard.cs" target="content/netstandard1.1" />
     <file src="Guardian.vsix" target="tools" />
     <file src="Guardian.Snippet/Guardian.vscontent" target="tools" />
   </files>

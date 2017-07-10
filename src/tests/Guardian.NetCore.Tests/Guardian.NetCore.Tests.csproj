@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Guardian.NetStandard\Guard.cs" Link="Subjects\Guard.cs" />
+    <Compile Include="..\..\Guardian.NetStandard\GuardExtensions.cs" Link="Subjects\GuardExtensions.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\Bugs\Bug001.cs" Link="Bugs\Bug001.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\GuardExpressionTests.cs" Link="GuardExpressionTests.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\GuardExtensionsTests.cs" Link="GuardExtensionsTests.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\GuardTests.cs" Link="GuardTests.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\Objects\Class.cs" Link="Objects\Class.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\Objects\Struct.cs" Link="Objects\Struct.cs" />
+    <Compile Include="..\Guardian.Net40.Tests\Objects\Thing.cs" Link="Objects\Thing.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bugs\" />
+    <Folder Include="Objects\" />
+    <Folder Include="Subjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="4.19.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+
+</Project>

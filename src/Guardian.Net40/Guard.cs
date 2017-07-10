@@ -96,6 +96,18 @@ internal class Guard
         }
     }
 
+    [Conditional("GUARD_STRICT")]
+    [DebuggerStepThrough]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
+    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
+    public void Invalid<T>(Func<T> expression)
+    {
+        if (expression != null && Expression.Parse(expression) == null)
+        {
+            throw new NotSupportedException("The expression used in the Guard clause is not supported.");
+        }
+    }
+
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
     [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "May not be called.")]
     [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "By design.")]
@@ -105,18 +117,6 @@ internal class Guard
         var exceptionType = parameterName == null || parameterName.Contains(".") ? typeof(ArgumentException) : typeof(ArgumentNullException);
 
         return ExceptionFactories[exceptionType].Invoke("Value cannot be null.", parameterName);
-    }
-
-    [Conditional("GUARD_STRICT")]
-    [DebuggerStepThrough]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private method.")]
-    [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "By design.")]
-    private void Invalid<T>(Func<T> expression)
-    {
-        if (expression != null && Expression.Parse(expression) == null)
-        {
-            throw new NotSupportedException("The expression used in the Guard clause is not supported.");
-        }
     }
 
     /// <summary>
@@ -131,15 +131,16 @@ internal class Guard
             .ToDictionary(opCode => opCode.Value);
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private member.")]
-        private static readonly OpCode[] OpCodeWhitelist = new[] { OpCodes.Constrained, OpCodes.Box, OpCodes.Ldstr };
+        private static readonly HashSet<OpCode> OpCodeWhitelist = new HashSet<OpCode> { OpCodes.Constrained, OpCodes.Box, OpCodes.Ldstr };
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Private member.")]
-        private static readonly OpCode[] OpCodeBlacklist = typeof(OpCodes).GetFields(BindingFlags.Static | BindingFlags.Public)
-            .Select(field => field.GetValue(null))
-            .Cast<OpCode>()
-            .Where(opCode => opCode.Name.StartsWith(OpCodes.Ldelem.Name, StringComparison.OrdinalIgnoreCase)) // all indexer calls
-            .Union(new[] { OpCodes.Newobj })
-            .ToArray();
+        private static readonly HashSet<OpCode> OpCodeBlacklist = new HashSet<OpCode>(
+            typeof(OpCodes).GetFields(BindingFlags.Static | BindingFlags.Public)
+                .Select(field => field.GetValue(null))
+                .Cast<OpCode>()
+                .Where(opCode => opCode.Name.StartsWith(OpCodes.Ldelem.Name, StringComparison.OrdinalIgnoreCase)) // all indexer calls
+                .Union(new[] { OpCodes.Newobj })
+                .ToArray());
 
         /// <summary>
         /// Converts the specified expression to its string representation.
@@ -165,7 +166,7 @@ internal class Guard
             using (var memoryStream = new MemoryStream(expression.Method.GetMethodBody().GetILAsByteArray()))
             using (var binaryReader = new BinaryReader(memoryStream))
             {
-                var memberNames = new Stack<string>();
+                var memberNames = new Queue<string>();
 
                 while (memoryStream.Position != memoryStream.Length)
                 {
@@ -186,15 +187,15 @@ internal class Guard
                     var targetType = expression.Target.GetType();
                     var member = targetType.Module.ResolveMember(handle, targetType.GetGenericArguments(), new Type[0]);
                     if (member.MemberType == MemberTypes.Method &&
-                        (((MethodInfo)member).GetParameters().Any() || !member.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase)))
+                        (((MethodInfo)member).GetParameters().Length > 0 || !member.Name.StartsWith("get_", StringComparison.OrdinalIgnoreCase)))
                     {
                         return null; // not a property
                     }
 
-                    memberNames.Push(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
+                    memberNames.Enqueue(member.MemberType == MemberTypes.Method ? member.Name.Substring(4) : member.Name);
                 }
 
-                return memberNames.Any() ? string.Join(".", memberNames.Reverse()) : null;
+                return memberNames.Count > 0 ? string.Join(".", memberNames) : null;
             }
         }
 
