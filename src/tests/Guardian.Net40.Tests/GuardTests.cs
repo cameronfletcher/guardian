@@ -280,5 +280,20 @@ namespace Guardian.Tests
             // assert
             exception.ShouldBeStrictNull();
         }
+
+#if !NETCOREAPP1_1
+        [Fact]
+        public void NullPropogatingOperatorExpression()
+        {
+            // arrange
+            var parameter = new Thing();
+
+            // act
+            var exception = Record.Exception(() => Guard.Against.Null(() => parameter?.Property));
+
+            // assert
+            exception.ShouldBeValid<ArgumentException>().WithParameter("parameter.Property");
+        }
+#endif
     }
 }
