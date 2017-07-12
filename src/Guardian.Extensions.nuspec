@@ -20,9 +20,8 @@ Guardian contributors</authors>
     <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
-    <file src="Guardian.Net35/GuardExtensions.cs" target="content/net35" />
     <file src="Guardian.Net40/GuardExtensions.cs" target="content/net40" />
     <file src="Guardian.Net45/GuardExtensions.cs" target="content/net45" />
-    <file src="Guardian.Pcl/GuardExtensions.cs" target="content/portable-win+net40+sl40+wp71" />
+    <file src="Guardian.NetStandard/GuardExtensions.cs" target="content/netstandard1.1" />
   </files>
 </package>
