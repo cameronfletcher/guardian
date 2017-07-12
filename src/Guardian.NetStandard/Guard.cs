@@ -140,11 +140,25 @@ internal class Guard
             var memberNames = new Stack<string>();
 
             var body = expression.Body;
-            while (body != null && body.NodeType == ExpressionType.MemberAccess)
+            while (body != null)
             {
-                var memberExpression = (MemberExpression)body;
-                memberNames.Push(memberExpression.Member.Name);
-                body = memberExpression.Expression;
+                switch (body.NodeType)
+                {
+                    case ExpressionType.Call:
+                    case ExpressionType.ArrayIndex:
+                    case ExpressionType.Parameter:
+                        return null;
+
+                    case ExpressionType.MemberAccess:
+                        var memberExpression = (MemberExpression)body;
+                        memberNames.Push(memberExpression.Member.Name);
+                        body = memberExpression.Expression;
+                        break;
+
+                    default:
+                        body = null;
+                        break;
+                }
             }
 
             return memberNames.Count > 0 ? string.Join(".", memberNames) : null;

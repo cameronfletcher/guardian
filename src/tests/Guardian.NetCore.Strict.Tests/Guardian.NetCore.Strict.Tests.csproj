@@ -15,7 +15,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
-    <DefineConstants>TRACE;DEBUG;NETCOREAPP1_1</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;GUARD_STRICT;NETCOREAPP1_1</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

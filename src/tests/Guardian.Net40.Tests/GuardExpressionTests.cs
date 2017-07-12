@@ -93,6 +93,7 @@ namespace Guardian.Tests
             Guard.Expression.Parse(() => @class.NullableStructProperty.Value.Class.NullableStructProperty).Should().Be("class.NullableStructProperty.Value.Class.NullableStructProperty");
             Guard.Expression.Parse(() => @class.NullableStructProperty.Value.Class.NullableStructProperty.Value.Class).Should().Be("class.NullableStructProperty.Value.Class.NullableStructProperty.Value.Class");
 
+
             // execute tests that have to be run from inside a generic type
             new GenericGuardExpressionTests<Class>().TestSupported<Class>(null, null);
         }
@@ -110,6 +111,15 @@ namespace Guardian.Tests
                 .WithParameter("expression");
 
             var closedGeneric = new GenericType<int>();
+
+            // indexers and method calls
+            var thing = new Thing();
+            Guard.Expression.Parse(() => thing.ThingArray[1].Property).Should().BeNull();
+            Guard.Expression.Parse(() => thing.NestedThing.ThingArray[1].Property).Should().BeNull();
+            Guard.Expression.Parse(() => thing.Method()).Should().BeNull();
+            Guard.Expression.Parse(() => thing.Method("abc")).Should().BeNull();
+            Guard.Expression.Parse(() => thing.NestedThing.Method()).Should().BeNull();
+            Guard.Expression.Parse(() => thing.NestedThing.Method("abc")).Should().BeNull();
 
             // A generic method call that does not have any generic context.
             Guard.Expression.Parse(() => closedGeneric.Method<object>(42, new object())).Should().BeNull();
